@@ -223,3 +223,21 @@ const SDLT_BANDS = {
     { min: 1500000, max: Infinity, rate: 0.17 }
   ]
 };
+
+/**
+ * Toggle jargon card expansion (for jargon buster sections)
+ * @param {HTMLElement} card - The jargon card element to toggle
+ */
+function toggleJargon(card) {
+  const isActive = card.classList.contains('active');
+  
+  // Close all cards
+  document.querySelectorAll('.jargon-card').forEach(c => {
+    c.classList.remove('active');
+  });
+  
+  // Open clicked card if it wasn't active
+  if (!isActive) {
+    card.classList.add('active');
+  }
+}
