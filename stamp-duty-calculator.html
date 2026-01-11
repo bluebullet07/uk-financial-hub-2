@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Stamp Duty Calculator 2025 | SDLT Calculator | UK Financial Hub</title>
+  <meta name="description" content="Free UK stamp duty calculator for 2025. Calculate SDLT for England and Northern Ireland with first-time buyer relief and additional property rates.">
+  <meta name="keywords" content="stamp duty calculator UK, SDLT calculator, stamp duty land tax, first time buyer stamp duty, additional property stamp duty">
+  
+  <link rel="canonical" href="https://ukfinanceshub.com/stamp-duty-calculator.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="mortgage-calculator-enhanced.html" class="nav-link">Mortgage</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
+          <li><a href="investment-calculator.html" class="nav-link">Investment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Stamp Duty Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>UK Stamp Duty Land Tax Calculator 2025</h1>
+        <p>Calculate stamp duty (SDLT) for property purchases in England and Northern Ireland. Includes first-time buyer relief and additional property surcharges.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <!-- LEFT: INPUTS -->
+        <div class="calculator-inputs">
+          <h3>Property Details</h3>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Property Purchase Price</span>
+              <span class="tooltip" data-tooltip="The agreed purchase price">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="propertyPrice" class="has-prefix" value="300000" min="0" max="10000000" step="10000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="propertyPriceSlider" min="0" max="2000000" value="300000" step="10000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Buyer Type</span>
+              <span class="tooltip" data-tooltip="Your buyer status affects rates">ⓘ</span>
+            </label>
+            <select id="buyerType">
+              <option value="firstTime">First-Time Buyer</option>
+              <option value="standard" selected>Home Mover (Standard)</option>
+              <option value="additional">Additional Property / Buy-to-Let</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="firstTimeInfo" style="display: none;">
+            <div style="background-color: #dbeafe; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem;">
+              <strong>First-Time Buyer Relief:</strong>
+              <ul style="margin: 0.5rem 0 0 1.5rem; padding: 0;">
+                <li>No SDLT on properties up to £425,000</li>
+                <li>5% on portion £425,001-£625,000</li>
+                <li>Properties over £625,000 pay standard rates</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="form-group" id="additionalInfo" style="display: none;">
+            <div style="background-color: #fef3c7; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem;">
+              <strong>Additional Property Surcharge:</strong>
+              <ul style="margin: 0.5rem 0 0 1.5rem; padding: 0;">
+                <li>Extra 5% on each band (previously 3%)</li>
+                <li>Applies to second homes and buy-to-let</li>
+                <li>May get refund if you sell main home within 3 years</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Region</span>
+              <span class="tooltip" data-tooltip="SDLT rates vary by region">ⓘ</span>
+            </label>
+            <select id="region">
+              <option value="england" selected>England / Northern Ireland</option>
+              <option value="scotland">Scotland (LBTT)</option>
+              <option value="wales">Wales (LTT)</option>
+            </select>
+          </div>
+
+          <div id="regionalNote" style="display: none; margin-top: 1rem; padding: 1rem; background-color: #f3f4f6; border-radius: 0.5rem; font-size: 0.875rem;">
+            <strong>Note:</strong> Scotland uses Land and Buildings Transaction Tax (LBTT) and Wales uses Land Transaction Tax (LTT) with different rates and bands. This calculator shows England/NI rates. Visit Revenue Scotland or Welsh Revenue Authority for accurate calculations.
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetSDLTCalculator()">Reset Calculator</button>
+        </div>
+
+        <!-- RIGHT: RESULTS -->
+        <div class="calculator-results">
+          <h3>Your Stamp Duty</h3>
+          
+          <div class="result-card highlight">
+            <div class="result-label">Total Stamp Duty</div>
+            <div class="result-value" id="totalSDLT">£0</div>
+            <div class="result-subtext" id="sdltSubtext">Payable on completion</div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Property Price</div>
+              <div class="result-value-mini" id="displayPrice">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Total to Pay</div>
+              <div class="result-value-mini" id="totalCost">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">SDLT Rate</div>
+              <div class="result-value-mini" id="effectiveRate">0%</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Buyer Type</div>
+              <div class="result-value-mini" id="displayBuyerType">Standard</div>
+            </div>
+          </div>
+
+          <!-- First-Time Buyer Savings -->
+          <div id="ftbSavings" class="hidden" style="margin: 1.5rem 0;">
+            <div class="savings-highlight">
+              <h4>💰 First-Time Buyer Savings</h4>
+              <div class="savings-grid">
+                <div class="saving-item">
+                  <span class="saving-label">Standard Rate SDLT</span>
+                  <span class="saving-value" id="standardSDLT">£0</span>
+                </div>
+                <div class="saving-item">
+                  <span class="saving-label">Your SDLT (FTB Relief)</span>
+                  <span class="saving-value green" id="ftbSDLT">£0</span>
+                </div>
+                <div class="saving-item">
+                  <span class="saving-label">You Save</span>
+                  <span class="saving-value green" id="ftbSaving">£0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart Tabs -->
+          <div class="chart-tabs">
+            <button class="chart-tab active" onclick="switchSDLTChart('breakdown')">SDLT Breakdown</button>
+            <button class="chart-tab" onclick="switchSDLTChart('comparison')">Rate Comparison</button>
+          </div>
+
+          <div class="chart-container" id="breakdownChartContainer">
+            <canvas id="sdltBreakdownChart"></canvas>
+          </div>
+
+          <div class="chart-container hidden" id="comparisonChartContainer">
+            <canvas id="sdltComparisonChart"></canvas>
+          </div>
+
+          <!-- PDF Export -->
+          <button class="btn btn-primary btn-full" onclick="showEmailModal()" style="margin-top: 1.5rem;">
+            📄 Download SDLT Report as PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- SDLT Band Breakdown Table -->
+      <div class="payment-schedule-section">
+        <h2>📊 Stamp Duty Band Breakdown</h2>
+        <p class="text-muted">See how stamp duty is calculated across different bands</p>
+        
+        <div class="schedule-table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Band</th>
+                <th>Property Value Range</th>
+                <th>Rate</th>
+                <th>Amount in Band</th>
+                <th>SDLT in Band</th>
+              </tr>
+            </thead>
+            <tbody id="sdltBandTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+            <tfoot>
+              <tr style="background-color: var(--bg-light); font-weight: 600;">
+                <td colspan="4" style="text-align: right; padding: 1rem;">Total Stamp Duty:</td>
+                <td id="sdltTableTotal" style="padding: 1rem;">£0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <button class="btn btn-secondary" onclick="exportSDLTCSV()">Export to CSV</button>
+        </div>
+      </div>
+
+      <!-- SDLT Comparison Tool -->
+      <div class="payment-schedule-section">
+        <h2>🔄 Compare Different Scenarios</h2>
+        <p class="text-muted">See how SDLT changes with different buyer types</p>
+        
+        <div class="comparison-view">
+          <div class="comparison-column">
+            <h4>First-Time Buyer</h4>
+            <div class="comparison-value" id="ftbComparison">£0</div>
+            <div class="comparison-label">With FTB Relief</div>
+          </div>
+          <div class="comparison-column">
+            <h4>Standard Rate</h4>
+            <div class="comparison-value" id="standardComparison">£0</div>
+            <div class="comparison-label">Home Mover</div>
+          </div>
+          <div class="comparison-column">
+            <h4>Additional Property</h4>
+            <div class="comparison-value" id="additionalComparison">£0</div>
+            <div class="comparison-label">Buy-to-Let / Second Home</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Stamp Duty Jargon Buster -->
+      <div class="jargon-buster-section">
+        <h2>📚 Stamp Duty Jargon Buster</h2>
+        <p class="text-muted">Click on any term to learn more</p>
+        
+        <div class="jargon-grid">
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏛️</span>
+              <span class="jargon-title">Stamp Duty Land Tax (SDLT)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              A tax paid when buying property in England and Northern Ireland. Paid to HMRC usually on completion day. The amount depends on property price and buyer status. <strong>Scotland and Wales have different systems.</strong>
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏠</span>
+              <span class="jargon-title">First-Time Buyer Relief</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              First-time buyers pay <strong>no SDLT on properties up to £425,000</strong>. For properties £425,001-£625,000, pay 5% on the portion above £425,000. Properties over £625,000 pay standard rates. Both buyers must be first-timers.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏘️</span>
+              <span class="jargon-title">Additional Property Surcharge</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Extra <strong>5% on each band</strong> (increased from 3% in 2024) if buying a second home or buy-to-let. Can reclaim if you sell your previous main home within 3 years. Doesn't apply if replacing main residence.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📊</span>
+              <span class="jargon-title">SDLT Bands</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              SDLT is charged in slices, like income tax. Standard rates: <strong>0% up to £250,000</strong>, <strong>5% on £250,001-£925,000</strong>, <strong>10% on £925,001-£1.5m</strong>, <strong>12% over £1.5m</strong>. You only pay higher rates on the portion in each band.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💷</span>
+              <span class="jargon-title">Completion Day</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The day you legally become the owner and receive keys. SDLT must be <strong>paid within 14 days</strong> of completion. Your solicitor usually handles payment. Late payment incurs interest and penalties.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📋</span>
+              <span class="jargon-title">SDLT Return</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              A form filed with HMRC within 14 days of completion showing property details and SDLT paid. Your solicitor typically handles this. You receive an SDLT5 certificate as proof of payment, needed for Land Registry registration.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+              <span class="jargon-title">LBTT (Scotland)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Land and Buildings Transaction Tax - Scotland's version of SDLT with different rates and bands. Generally <strong>higher rates than England</strong>. First-time buyer relief up to £175,000. Managed by Revenue Scotland, not HMRC.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏴󠁧󠁢󠁷󠁬󠁳󠁿</span>
+              <span class="jargon-title">LTT (Wales)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Land Transaction Tax - Wales's property tax with its own rates and bands. Different thresholds from England. Managed by Welsh Revenue Authority. <strong>Check Welsh rates separately</strong> if buying in Wales.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔄</span>
+              <span class="jargon-title">SDLT Refund</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              You can claim back the 5% surcharge if you <strong>sell your previous main home within 3 years</strong> of buying the new one. Must apply within 12 months of selling. Takes 4-6 weeks to process. Only applies to additional property surcharge.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💼</span>
+              <span class="jargon-title">Mixed-Use Property</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Property with both residential and commercial use (e.g., flat above a shop). Charged at <strong>non-residential SDLT rates</strong> which are usually lower. Must genuinely be mixed-use - purely residential with home office doesn't qualify.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏗️</span>
+              <span class="jargon-title">New Build SDLT</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              New builds pay the same SDLT as existing properties. No special relief. First-time buyers get relief on new builds up to £625,000. Consider Help to Buy schemes which may reduce upfront costs but not SDLT liability.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">⚖️</span>
+              <span class="jargon-title">Replacing Main Residence</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              If selling your current main home and buying another, you <strong>don't pay the 5% surcharge</strong> even if you temporarily own two properties. Must intend new property to be your main home. Sell previous home within 3 years to avoid surcharge.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="info-section">
+        <h2>Understanding Stamp Duty Land Tax</h2>
+        
+        <h3>How SDLT Works</h3>
+        <p>Stamp duty is charged in bands, similar to income tax. You pay different rates on different portions of the property price:</p>
+        <ul>
+          <li><strong>£0 - £250,000:</strong> 0% (£425,000 for first-time buyers)</li>
+          <li><strong>£250,001 - £925,000:</strong> 5%</li>
+          <li><strong>£925,001 - £1,500,000:</strong> 10%</li>
+          <li><strong>Over £1,500,000:</strong> 12%</li>
+        </ul>
+        
+        <h3>Who Qualifies as a First-Time Buyer?</h3>
+        <ul>
+          <li>Never owned property anywhere in the world</li>
+          <li>If buying with someone, both must be first-time buyers</li>
+          <li>Property must be under £625,000</li>
+          <li>Must intend to live in the property (not buy-to-let)</li>
+          <li>Relief applies automatically - no application needed</li>
+        </ul>
+        
+        <h3>When SDLT is Due</h3>
+        <p>Your solicitor typically pays SDLT on your behalf within 14 days of completion. Budget for it in addition to deposit, legal fees, and surveys. Late payment incurs penalties and interest.</p>
+        
+        <h3>Tips to Reduce SDLT</h3>
+        <ul>
+          <li><strong>First-time buyers:</strong> Stay under £425,000 for zero SDLT</li>
+          <li><strong>Additional property:</strong> Sell previous home before buying to avoid 5% surcharge</li>
+          <li><strong>Negotiate price:</strong> Especially near band thresholds (£250k, £925k, £1.5m)</li>
+          <li><strong>Consider fixtures:</strong> Carpets, curtains bought separately aren't subject to SDLT</li>
+        </ul>
+      </div>
+
+      <div class="disclaimer">
+        <p><strong>⚠️ Disclaimer:</strong> This calculator provides estimates for England and Northern Ireland based on 2025 rates. Scotland and Wales have different property taxes. Actual SDLT may vary based on specific circumstances. This is for guidance only and not legal or tax advice. Consult a solicitor for accurate calculations.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Email Modal -->
+  <div id="emailModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeEmailModal()">&times;</span>
+      <h2>📧 Get Your SDLT Report</h2>
+      <p>Enter your email to receive your stamp duty calculation report as a PDF.</p>
+      
+      <form onsubmit="generateSDLTPDF(event)" class="email-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="userEmail" placeholder="your.email@example.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="privacyConsent" required>
+            I agree to receive my SDLT report. We won't send marketing emails.
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full">
+          Generate & Download PDF
+        </button>
+      </form>
+      
+      <p class="text-muted" style="font-size: 0.875rem; margin-top: 1rem;">
+        Your privacy is important. We only use your email to send the report.
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About UK Financial Hub</h4>
+          <p>Free, accurate financial calculators for UK residents. Updated regularly with the latest tax rates and regulations.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="mortgage-calculator-enhanced.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More Tools</h4>
+          <ul class="footer-links">
+            <li><a href="simple-interest-calculator.html">Simple Interest</a></li>
+            <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+            <li><a href="investment-calculator.html">Investment Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 UK Financial Hub. All calculators updated for 2025/26 tax year. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/stamp-duty.js"></script>
+</body>
+</html>

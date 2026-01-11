@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Income Tax Calculator 2025/26 | Calculate Take-Home Pay | UK Financial Hub</title>
+  <meta name="description" content="Free UK income tax calculator for 2025/26. Calculate income tax, National Insurance, and take-home pay. Covers England, Wales, and Scotland with detailed breakdown.">
+  <meta name="keywords" content="UK tax calculator 2025, income tax calculator UK, National Insurance calculator, take home pay calculator, HMRC tax calculator">
+  
+  <link rel="canonical" href="https://ukfinanceshub.com/income-tax-calculator.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="mortgage-calculator-enhanced.html" class="nav-link">Mortgage</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
+          <li><a href="investment-calculator.html" class="nav-link">Investment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Income Tax Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>UK Income Tax Calculator 2025/26</h1>
+        <p>Calculate your income tax, National Insurance, and take-home pay. Detailed breakdown for England, Wales, and Scotland with student loan options.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <!-- LEFT: INPUTS -->
+        <div class="calculator-inputs">
+          <h3>Your Income Details</h3>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Annual Salary (Gross)</span>
+              <span class="tooltip" data-tooltip="Your salary before tax">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="salary" class="has-prefix" value="50000" min="0" max="500000" step="1000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="salarySlider" min="0" max="150000" value="50000" step="1000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Region</span>
+              <span class="tooltip" data-tooltip="Tax bands differ in Scotland">ⓘ</span>
+            </label>
+            <select id="region">
+              <option value="england" selected>England / Wales / Northern Ireland</option>
+              <option value="scotland">Scotland</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Pension Contribution (Monthly)</span>
+              <span class="tooltip" data-tooltip="Your monthly pension contribution">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="pension" class="has-prefix" value="0" min="0" max="10000" step="50">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="pensionSlider" min="0" max="2000" value="0" step="50">
+            </div>
+            <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.5rem;">
+              Annual: £<span id="pensionAnnual">0</span> (<span id="pensionPercent">0</span>% of salary)
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Student Loan Plan</span>
+              <span class="tooltip" data-tooltip="Check your student loan statement">ⓘ</span>
+            </label>
+            <select id="studentLoan">
+              <option value="none" selected>No Student Loan</option>
+              <option value="plan1">Plan 1 (Before Sept 2012)</option>
+              <option value="plan2">Plan 2 (Sept 2012 - Aug 2023)</option>
+              <option value="plan4">Plan 4 (Scotland)</option>
+              <option value="postgrad">Postgraduate Loan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Other Taxable Income</span>
+              <span class="tooltip" data-tooltip="Rental, dividends, etc.">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="otherIncome" class="has-prefix" value="0" min="0" max="100000" step="500">
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetTaxCalculator()">Reset Calculator</button>
+        </div>
+
+        <!-- RIGHT: RESULTS -->
+        <div class="calculator-results">
+          <h3>Your Take-Home Pay</h3>
+          
+          <div class="result-card highlight">
+            <div class="result-label">Monthly Take-Home</div>
+            <div class="result-value" id="monthlyTakeHome">£0</div>
+            <div class="result-subtext" id="takeHomeSubtext">After all deductions</div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Annual Net</div>
+              <div class="result-value-mini" id="annualTakeHome">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Income Tax</div>
+              <div class="result-value-mini" id="incomeTax">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">National Insurance</div>
+              <div class="result-value-mini" id="nationalInsurance">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Effective Tax Rate</div>
+              <div class="result-value-mini" id="effectiveRate">0%</div>
+            </div>
+          </div>
+
+          <!-- Deductions Breakdown -->
+          <div id="deductionsBreakdown" style="margin: 1.5rem 0;">
+            <h4 style="margin-bottom: 1rem; color: var(--text-primary);">💰 Monthly Deductions</h4>
+            <ul class="result-breakdown">
+              <li>
+                <span>Gross Salary</span>
+                <strong id="monthlyGross">£0</strong>
+              </li>
+              <li>
+                <span>Income Tax</span>
+                <strong id="monthlyTax" style="color: var(--error-color);">-£0</strong>
+              </li>
+              <li>
+                <span>National Insurance</span>
+                <strong id="monthlyNI" style="color: var(--error-color);">-£0</strong>
+              </li>
+              <li id="pensionRow" class="hidden">
+                <span>Pension</span>
+                <strong id="monthlyPension" style="color: var(--error-color);">-£0</strong>
+              </li>
+              <li id="studentLoanRow" class="hidden">
+                <span>Student Loan</span>
+                <strong id="monthlyStudentLoan" style="color: var(--error-color);">-£0</strong>
+              </li>
+              <li>
+                <span>Net Take-Home</span>
+                <strong id="monthlyNet" style="color: var(--success-color);">£0</strong>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Chart Tabs -->
+          <div class="chart-tabs">
+            <button class="chart-tab active" onclick="switchTaxChart('breakdown')">Tax Breakdown</button>
+            <button class="chart-tab" onclick="switchTaxChart('bands')">Tax Bands</button>
+          </div>
+
+          <div class="chart-container" id="breakdownChartContainer">
+            <canvas id="taxBreakdownChart"></canvas>
+          </div>
+
+          <div class="chart-container hidden" id="bandsChartContainer">
+            <canvas id="taxBandsChart"></canvas>
+          </div>
+
+          <!-- PDF Export -->
+          <button class="btn btn-primary btn-full" onclick="showEmailModal()" style="margin-top: 1.5rem;">
+            📄 Download Tax Report as PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Tax Band Breakdown Table -->
+      <div class="payment-schedule-section">
+        <h2>📊 Detailed Tax Band Breakdown</h2>
+        <p class="text-muted">See how your income is taxed in each band</p>
+        
+        <div class="schedule-table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Tax Band</th>
+                <th>Income Range</th>
+                <th>Rate</th>
+                <th>Taxable Income</th>
+                <th>Tax Paid</th>
+              </tr>
+            </thead>
+            <tbody id="taxBandTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <h4>National Insurance Breakdown</h4>
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>NI Band</th>
+                <th>Income Range</th>
+                <th>Rate</th>
+                <th>NI Paid</th>
+              </tr>
+            </thead>
+            <tbody id="niBandTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Interactive Tax Jargon Buster -->
+      <div class="jargon-buster-section">
+        <h2>📚 Tax Jargon Buster</h2>
+        <p class="text-muted">Click on any term to learn more</p>
+        
+        <div class="jargon-grid">
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💷</span>
+              <span class="jargon-title">Personal Allowance</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The amount you can earn tax-free each year. For 2025/26, it's <strong>£12,570</strong>. You don't pay any income tax on earnings below this. However, it reduces by £1 for every £2 earned over £100,000.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📊</span>
+              <span class="jargon-title">Tax Bands</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Income ranges taxed at different rates. In England: <strong>20% basic rate</strong> (£12,571-£50,270), <strong>40% higher rate</strong> (£50,271-£125,140), <strong>45% additional rate</strong> (over £125,140). Scotland has more bands.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏥</span>
+              <span class="jargon-title">National Insurance (NI)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              A separate tax paid on earnings to fund NHS, state pension, and benefits. For 2025/26: <strong>0% up to £12,570</strong>, <strong>8% on £12,571-£50,270</strong>, <strong>2% over £50,270</strong>. Different from income tax.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🎓</span>
+              <span class="jargon-title">Student Loan Repayment</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Automatic deductions if you earn over the threshold. <strong>Plan 1:</strong> 9% over £24,990. <strong>Plan 2:</strong> 9% over £27,295. <strong>Plan 4:</strong> 9% over £31,395. <strong>Postgrad:</strong> 6% over £21,000. Can have multiple plans.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💰</span>
+              <span class="jargon-title">Gross vs Net Income</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              <strong>Gross:</strong> Your salary before any deductions. <strong>Net (Take-Home):</strong> What you actually receive after tax, NI, pension, and student loan deductions. Most people focus on net income for budgeting.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+              <span class="jargon-title">Scottish Tax Rates</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Scotland has different income tax bands: <strong>Starter (19%)</strong>, <strong>Basic (20%)</strong>, <strong>Intermediate (21%)</strong>, <strong>Higher (42%)</strong>, <strong>Advanced (45%)</strong>, <strong>Top (48%)</strong>. National Insurance is the same across UK.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📈</span>
+              <span class="jargon-title">Effective Tax Rate</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Your average tax rate across all income. Calculated as: (Total Tax ÷ Gross Income) × 100. Different from marginal rate (tax on next £1 earned). Useful for comparing overall tax burden.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💼</span>
+              <span class="jargon-title">Pension Tax Relief</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Pension contributions reduce your taxable income. Basic rate taxpayers get <strong>20% relief automatically</strong>. Higher/additional rate taxpayers can claim extra relief (20%/25%) via self-assessment. Saves you tax now, builds retirement pot.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📋</span>
+              <span class="jargon-title">Tax Code</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              A code on your payslip telling your employer how much tax to deduct. Most common is <strong>1257L</strong> (standard personal allowance). Check yours is correct - wrong code means wrong tax paid!
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔄</span>
+              <span class="jargon-title">PAYE (Pay As You Earn)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The system where employers deduct tax and NI before paying you. Means you don't need to pay tax yourself (unless self-employed or have other income). Most employees are on PAYE.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📅</span>
+              <span class="jargon-title">Tax Year</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Runs from <strong>6 April to 5 April</strong> (not calendar year). Current year is 2025/26. Important for tax returns, ISA allowances, and pension contributions. Rates usually announced in March Budget.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💡</span>
+              <span class="jargon-title">Marginal Tax Rate</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The tax rate on your next £1 of income. If you're a basic rate taxpayer, it's <strong>20% + 8% NI = 28%</strong>. Higher rate is <strong>40% + 2% NI = 42%</strong>. Important for overtime, bonuses, and pay rises.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="info-section">
+        <h2>How the UK Tax System Works</h2>
+        <p>The UK tax system has two main components:</p>
+        
+        <h3>1. Income Tax</h3>
+        <p>Paid on earnings above your personal allowance (£12,570 for 2025/26). Tax bands apply progressively - you only pay higher rates on income within that band, not your entire income.</p>
+        
+        <h3>2. National Insurance</h3>
+        <p>A separate contribution that funds the NHS, state pension, and unemployment benefits. Rates differ from income tax and apply on earnings above £12,570.</p>
+        
+        <h3>Key Differences: England vs Scotland</h3>
+        <ul>
+          <li><strong>England/Wales/NI:</strong> 3 tax bands (20%, 40%, 45%)</li>
+          <li><strong>Scotland:</strong> 6 tax bands (19%, 20%, 21%, 42%, 45%, 48%)</li>
+          <li><strong>National Insurance:</strong> Same across entire UK</li>
+        </ul>
+        
+        <h3>Reducing Your Tax Bill</h3>
+        <ul>
+          <li><strong>Pension contributions:</strong> Get tax relief at your marginal rate</li>
+          <li><strong>Salary sacrifice:</strong> Exchange salary for benefits (reduces taxable income)</li>
+          <li><strong>ISAs:</strong> Interest and gains are tax-free</li>
+          <li><strong>Marriage allowance:</strong> Transfer 10% of personal allowance to spouse</li>
+          <li><strong>Charitable donations:</strong> Gift Aid adds 25% from government</li>
+        </ul>
+      </div>
+
+      <div class="disclaimer">
+        <p><strong>⚠️ Disclaimer:</strong> This calculator provides estimates based on 2025/26 tax rates. Actual deductions may vary based on your tax code, benefits, and other factors. This is for guidance only and not tax advice. Consult HMRC or a tax advisor for specific situations.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Email Modal -->
+  <div id="emailModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeEmailModal()">&times;</span>
+      <h2>📧 Get Your Tax Report</h2>
+      <p>Enter your email to receive your detailed tax calculation report as a PDF.</p>
+      
+      <form onsubmit="generateTaxPDF(event)" class="email-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="userEmail" placeholder="your.email@example.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="privacyConsent" required>
+            I agree to receive my tax report. We won't send marketing emails.
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full">
+          Generate & Download PDF
+        </button>
+      </form>
+      
+      <p class="text-muted" style="font-size: 0.875rem; margin-top: 1rem;">
+        Your privacy is important. We only use your email to send the report.
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About UK Financial Hub</h4>
+          <p>Free, accurate financial calculators for UK residents. Updated regularly with the latest tax rates and regulations.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="mortgage-calculator-enhanced.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More Tools</h4>
+          <ul class="footer-links">
+            <li><a href="simple-interest-calculator.html">Simple Interest</a></li>
+            <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+            <li><a href="investment-calculator.html">Investment Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 UK Financial Hub. All calculators updated for 2025/26 tax year. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/income-tax.js"></script>
+</body>
+</html>

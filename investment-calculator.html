@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Returns Calculator UK | Calculate Investment Growth</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="mortgage-calculator-enhanced.html" class="nav-link">Mortgage</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="investment-calculator.html" class="nav-link">Investment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Investment Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>Investment Returns Calculator</h1>
+        <p>Project your investment growth with different return scenarios</p>
+      </div>
+
+      <div class="calculator-layout">
+        <div class="calculator-inputs">
+          <h3>Investment Details</h3>
+          <div class="form-group">
+            <label class="form-label">Lump Sum Investment</label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="lumpSum" class="has-prefix" value="10000" min="0" step="100">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Monthly Investment</label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="monthlyInv" class="has-prefix" value="500" min="0" step="50">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Expected Annual Return (%)</label>
+            <div class="input-group">
+              <input type="number" id="returnRate" class="has-suffix" value="7" min="0" max="20" step="0.5">
+              <span class="input-suffix">%</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Investment Period (Years)</label>
+            <select id="period">
+              <option value="5">5 years</option>
+              <option value="10" selected>10 years</option>
+              <option value="15">15 years</option>
+              <option value="20">20 years</option>
+              <option value="25">25 years</option>
+              <option value="30">30 years</option>
+            </select>
+          </div>
+          <button class="btn btn-secondary btn-full" onclick="resetInvestmentCalc()">Reset</button>
+        </div>
+
+        <div class="calculator-results">
+          <h3>Your Results</h3>
+          <div class="result-card highlight">
+            <div class="result-label">Projected Value</div>
+            <div class="result-value" id="finalValue">£0</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Total Invested</div>
+              <div class="result-value-mini" id="totalInvested">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Total Returns</div>
+              <div class="result-value-mini" id="totalReturns">£0</div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="investmentChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 UK Financial Hub</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/investment.js"></script>
+</body>
+</html>

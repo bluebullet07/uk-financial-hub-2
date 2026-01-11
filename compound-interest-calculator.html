@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Interest Calculator UK | Calculate Investment Growth | UK Financial Hub</title>
+  <meta name="description" content="Free compound interest calculator. See how your savings grow with regular contributions and compound interest. Visual charts and detailed breakdown.">
+  
+  <link rel="canonical" href="https://ukfinanceshub.com/compound-interest-calculator.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="mortgage-calculator-enhanced.html" class="nav-link">Mortgage</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
+          <li><a href="compound-interest-calculator.html" class="nav-link">Compound Interest</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Compound Interest Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>Compound Interest Calculator</h1>
+        <p>See how your money grows with the power of compound interest. Add regular contributions and watch your savings multiply over time.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <div class="calculator-inputs">
+          <h3>Investment Details</h3>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Initial Investment</span>
+              <span class="tooltip" data-tooltip="Starting amount">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="principal" class="has-prefix" value="10000" min="0" step="100">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="principalSlider" min="0" max="100000" value="10000" step="1000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Monthly Contribution</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="monthly" class="has-prefix" value="200" min="0" step="10">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="monthlySlider" min="0" max="2000" value="200" step="50">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Annual Interest Rate</span>
+            </label>
+            <div class="input-group">
+              <input type="number" id="rate" class="has-suffix" value="5" min="0" max="20" step="0.1">
+              <span class="input-suffix">%</span>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="rateSlider" min="0" max="15" value="5" step="0.1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Time Period (Years)</span>
+            </label>
+            <select id="years">
+              <option value="5">5 years</option>
+              <option value="10" selected>10 years</option>
+              <option value="15">15 years</option>
+              <option value="20">20 years</option>
+              <option value="25">25 years</option>
+              <option value="30">30 years</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Compounding Frequency</span>
+            </label>
+            <select id="frequency">
+              <option value="12" selected>Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="1">Annually</option>
+              <option value="365">Daily</option>
+            </select>
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetCompoundCalculator()">Reset</button>
+        </div>
+
+        <div class="calculator-results">
+          <h3>Your Results</h3>
+          
+          <div class="result-card highlight">
+            <div class="result-label">Final Balance</div>
+            <div class="result-value" id="finalBalance">£0</div>
+            <div class="result-subtext" id="subtitle">After compound growth</div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Total Contributions</div>
+              <div class="result-value-mini" id="totalContributions">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Interest Earned</div>
+              <div class="result-value-mini" id="interestEarned">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Effective Rate</div>
+              <div class="result-value-mini" id="effectiveRate">0%</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Growth Multiple</div>
+              <div class="result-value-mini" id="growthMultiple">0x</div>
+            </div>
+          </div>
+
+          <div class="chart-tabs">
+            <button class="chart-tab active" onclick="switchChart('growth')">Growth Timeline</button>
+            <button class="chart-tab" onclick="switchChart('breakdown')">Breakdown</button>
+          </div>
+
+          <div class="chart-container" id="growthChartContainer">
+            <canvas id="growthChart"></canvas>
+          </div>
+
+          <div class="chart-container hidden" id="breakdownChartContainer">
+            <canvas id="breakdownChart"></canvas>
+          </div>
+
+          <button class="btn btn-primary btn-full" onclick="showEmailModal()" style="margin-top: 1.5rem;">
+            📄 Download Report as PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="payment-schedule-section">
+        <h2>📊 Year-by-Year Growth</h2>
+        <div class="schedule-table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Balance</th>
+                <th>Contributions</th>
+                <th>Interest Earned</th>
+              </tr>
+            </thead>
+            <tbody id="growthTableBody"></tbody>
+          </table>
+        </div>
+        <button class="btn btn-secondary" onclick="exportCSV()" style="margin-top: 1rem;">Export to CSV</button>
+      </div>
+
+      <div class="info-section">
+        <h2>The Power of Compound Interest</h2>
+        <p>Compound interest means earning interest on your interest. It's one of the most powerful forces in finance and can dramatically accelerate your savings growth over time.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="emailModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeEmailModal()">&times;</span>
+      <h2>📧 Get Your Report</h2>
+      <p>Enter your email to receive your compound interest report.</p>
+      <form onsubmit="generatePDF(event)" class="email-form">
+        <input type="email" id="userEmail" placeholder="your.email@example.com" required style="width: 100%; padding: 0.75rem; margin: 1rem 0; border: 1px solid #ccc; border-radius: 0.5rem;">
+        <label style="display: block; margin-bottom: 1rem;">
+          <input type="checkbox" id="privacyConsent" required>
+          I agree to receive the report
+        </label>
+        <button type="submit" class="btn btn-primary btn-full">Generate PDF</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 UK Financial Hub. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/compound-interest.js"></script>
+</body>
+</html>

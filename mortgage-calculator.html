@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Mortgage Calculator 2025 | Calculate Monthly Payments & Interest | UK Financial Hub</title>
+  <meta name="description" content="Free UK mortgage calculator for 2025. Calculate monthly payments, total interest, and affordability. Updated with latest UK lending rates and includes stamp duty. Instant results for first-time buyers and remortgaging.">
+  <meta name="keywords" content="UK mortgage calculator, mortgage calculator UK 2025, monthly mortgage payment calculator, UK home loan calculator, mortgage affordability calculator, first time buyer mortgage">
+  
+  <link rel="canonical" href="https://ukfinanceshub.com/mortgage-calculator.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UK Mortgage Calculator",
+    "url": "https://ukfinanceshub.com/mortgage-calculator.html",
+    "description": "Calculate UK mortgage monthly payments, total interest, and affordability",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="mortgage-calculator.html" class="nav-link">Mortgage</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
+          <li><a href="investment-calculator.html" class="nav-link">Investment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Mortgage Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>UK Mortgage Calculator</h1>
+        <p>Calculate your monthly mortgage payments, total interest, and see how overpayments can reduce your mortgage term. Updated for 2025 with the latest UK lending rates.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <div class="calculator-inputs">
+          <h3>Mortgage Details</h3>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Property Price</span>
+              <span class="tooltip" data-tooltip="The purchase price of the property">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="propertyPrice" class="has-prefix" value="400000" min="50000" max="5000000" step="10000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="propertyPriceSlider" min="50000" max="5000000" value="400000" step="10000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Deposit</span>
+              <span class="tooltip" data-tooltip="Amount you're putting down as deposit">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="deposit" class="has-prefix" value="80000" min="0" max="5000000" step="5000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="depositSlider" min="0" max="500000" value="80000" step="5000">
+            </div>
+            <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.5rem;">
+              <span id="depositPercentage">20%</span> of property price
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Mortgage Term</span>
+              <span class="tooltip" data-tooltip="Length of mortgage in years">ⓘ</span>
+            </label>
+            <select id="mortgageTerm">
+              <option value="10">10 years</option>
+              <option value="15">15 years</option>
+              <option value="20">20 years</option>
+              <option value="25" selected>25 years</option>
+              <option value="30">30 years</option>
+              <option value="35">35 years</option>
+              <option value="40">40 years</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Interest Rate</span>
+              <span class="tooltip" data-tooltip="Annual interest rate">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <input type="number" id="interestRate" class="has-suffix" value="5.5" min="0.1" max="15" step="0.1">
+              <span class="input-suffix">%</span>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="interestRateSlider" min="1" max="15" value="5.5" step="0.1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Mortgage Type</span>
+            </label>
+            <select id="mortgageType">
+              <option value="repayment" selected>Repayment</option>
+              <option value="interestOnly">Interest Only</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Monthly Overpayment (Optional)</span>
+              <span class="tooltip" data-tooltip="Extra amount to pay each month">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="overpayment" class="has-prefix" value="0" min="0" max="10000" step="50">
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetMortgageCalculator()">Reset</button>
+        </div>
+
+        <div class="calculator-results">
+          <h3>Your Results</h3>
+          
+          <div class="result-card highlight">
+            <div class="result-label">Monthly Payment</div>
+            <div class="result-value" id="monthlyPayment">£0</div>
+            <div class="result-subtext" id="paymentSubtext"></div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-label">Loan Amount</div>
+            <div class="result-value" id="loanAmount">£0</div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-label">Total Interest</div>
+            <div class="result-value" id="totalInterest">£0</div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-label">Total Repayment</div>
+            <div class="result-value" id="totalRepayment">£0</div>
+          </div>
+
+          <div id="overpaymentResults" class="hidden">
+            <div class="result-card">
+              <div class="result-label">Time Saved with Overpayments</div>
+              <div class="result-value" id="timeSaved">0 years</div>
+            </div>
+            
+            <div class="result-card">
+              <div class="result-label">Interest Saved</div>
+              <div class="result-value" id="interestSaved">£0</div>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="mortgageChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h2>How the UK Mortgage Calculator Works</h2>
+        <p>This mortgage calculator helps you understand your monthly mortgage payments and the total cost of your home loan. It uses standard mortgage calculation formulas used by UK lenders.</p>
+        
+        <h3>What You Need to Know</h3>
+        <ul>
+          <li><strong>Repayment Mortgage:</strong> You pay back both the capital (loan amount) and interest each month. By the end of the term, you'll own the property outright.</li>
+          <li><strong>Interest-Only Mortgage:</strong> You only pay the interest each month. You'll need to repay the full loan amount at the end of the term.</li>
+          <li><strong>Overpayments:</strong> Making extra payments can significantly reduce your mortgage term and save thousands in interest.</li>
+          <li><strong>Deposit:</strong> Most lenders require at least 5-10% deposit. A larger deposit usually means better interest rates.</li>
+        </ul>
+
+        <h3>Tips for First-Time Buyers</h3>
+        <ul>
+          <li>Save for a larger deposit to access better rates</li>
+          <li>Consider mortgage terms carefully - longer terms mean lower monthly payments but more interest overall</li>
+          <li>Factor in additional costs like stamp duty, legal fees, and surveys</li>
+          <li>Check if you qualify for first-time buyer schemes like Help to Buy</li>
+          <li>Get a mortgage in principle before house hunting</li>
+        </ul>
+      </div>
+
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How much mortgage can I afford?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Most UK lenders will offer a mortgage of 4 to 4.5 times your annual income. However, affordability also depends on your monthly outgoings, credit history, and existing debts. Use our calculator to see how different loan amounts affect your monthly payments.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What is a good mortgage rate in 2025?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Mortgage rates vary based on your deposit size, credit score, and loan type. As of 2025, typical rates range from 4% to 6% for fixed-rate mortgages. Larger deposits generally secure better rates. Always compare offers from multiple lenders.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Should I choose a fixed or variable rate?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Fixed-rate mortgages offer payment certainty for a set period (usually 2-5 years), protecting you from rate increases. Variable rates can go up or down with the Bank of England base rate. Fixed rates are popular when interest rates are low or expected to rise.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are mortgage overpayments worth it?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, overpayments can save significant interest and reduce your mortgage term. However, check your mortgage allows overpayments (most allow up to 10% per year). Ensure you have an emergency fund before making overpayments.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What costs should I budget for beyond the mortgage?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Budget for: stamp duty (use our stamp duty calculator), legal fees (£500-£1,500), survey costs (£250-£1,000), mortgage arrangement fees, buildings insurance, and moving costs. First-time buyers should also consider furniture and immediate repairs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <p><strong>⚠️ Disclaimer:</strong> This mortgage calculator provides estimates based on the information you provide. Actual mortgage offers may differ. Interest rates, fees, and terms vary between lenders. This tool is for guidance only and does not constitute financial advice. Always consult with a qualified mortgage advisor before making decisions.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About UK Financial Hub</h4>
+          <p>Free, accurate financial calculators for UK residents. Updated regularly with the latest tax rates and regulations.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More Tools</h4>
+          <ul class="footer-links">
+            <li><a href="simple-interest-calculator.html">Simple Interest</a></li>
+            <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+            <li><a href="investment-calculator.html">Investment Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 UK Financial Hub. All calculators updated for 2025/26 tax year. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/mortgage.js"></script>
+</body>
+</html>

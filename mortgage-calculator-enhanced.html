@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Mortgage Calculator 2025 | Calculate Monthly Payments & Interest | UK Financial Hub</title>
+  <meta name="description" content="Free UK mortgage calculator for 2025. Calculate monthly payments, total interest, and affordability. Updated with latest UK lending rates and includes stamp duty. Instant results for first-time buyers and remortgaging.">
+  <meta name="keywords" content="UK mortgage calculator, mortgage calculator UK 2025, monthly mortgage payment calculator, UK home loan calculator, mortgage affordability calculator, first time buyer mortgage">
+  
+  <link rel="canonical" href="https://ukfinanceshub.com/mortgage-calculator.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UK Mortgage Calculator",
+    "url": "https://ukfinanceshub.com/mortgage-calculator.html",
+    "description": "Calculate UK mortgage monthly payments, total interest, and affordability",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="mortgage-calculator.html" class="nav-link">Mortgage</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
+          <li><a href="investment-calculator.html" class="nav-link">Investment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Enhanced Mortgage Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>UK Mortgage Calculator (Enhanced)</h1>
+        <p>Calculate your monthly mortgage payments, see detailed payment breakdowns, and explore overpayment scenarios to save thousands in interest.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <!-- LEFT SIDE: INPUTS -->
+        <div class="calculator-inputs">
+          <h3>Mortgage Details</h3>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Property Price</span>
+              <span class="tooltip" data-tooltip="The purchase price of the property">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="propertyPrice" class="has-prefix" value="400000" min="50000" max="5000000" step="10000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="propertyPriceSlider" min="50000" max="5000000" value="400000" step="10000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Deposit</span>
+              <span class="tooltip" data-tooltip="Amount you're putting down as deposit">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="deposit" class="has-prefix" value="80000" min="0" max="5000000" step="5000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="depositSlider" min="0" max="500000" value="80000" step="5000">
+            </div>
+            <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.5rem;">
+              <span id="depositPercentage">20%</span> of property price (LTV: <span id="ltvPercentage">80%</span>)
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Mortgage Term</span>
+              <span class="tooltip" data-tooltip="Length of mortgage in years">ⓘ</span>
+            </label>
+            <select id="mortgageTerm">
+              <option value="10">10 years</option>
+              <option value="15">15 years</option>
+              <option value="20">20 years</option>
+              <option value="25" selected>25 years</option>
+              <option value="30">30 years</option>
+              <option value="35">35 years</option>
+              <option value="40">40 years</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Interest Rate</span>
+              <span class="tooltip" data-tooltip="Annual interest rate">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <input type="number" id="interestRate" class="has-suffix" value="5.5" min="0.1" max="15" step="0.1">
+              <span class="input-suffix">%</span>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="interestRateSlider" min="1" max="15" value="5.5" step="0.1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Mortgage Type</span>
+            </label>
+            <select id="mortgageType">
+              <option value="repayment" selected>Repayment</option>
+              <option value="interestOnly">Interest Only</option>
+            </select>
+          </div>
+
+          <!-- NEW: Overpayment Options -->
+          <div class="overpayment-section">
+            <h4 style="margin: 1.5rem 0 1rem 0; color: var(--text-primary);">💰 Overpayment Options</h4>
+            
+            <div class="form-group">
+              <label class="form-label">
+                <span>Monthly Overpayment</span>
+                <span class="tooltip" data-tooltip="Extra amount to pay each month">ⓘ</span>
+              </label>
+              <div class="input-group">
+                <span class="input-prefix">£</span>
+                <input type="number" id="monthlyOverpayment" class="has-prefix" value="0" min="0" max="10000" step="50">
+              </div>
+              <div class="slider-container">
+                <input type="range" id="monthlyOverpaymentSlider" min="0" max="2000" value="0" step="50">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>One-Time Lump Sum Payment</span>
+                <span class="tooltip" data-tooltip="One-off payment to reduce mortgage">ⓘ</span>
+              </label>
+              <div class="input-group">
+                <span class="input-prefix">£</span>
+                <input type="number" id="lumpSumPayment" class="has-prefix" value="0" min="0" max="100000" step="1000">
+              </div>
+              <div class="slider-container">
+                <input type="range" id="lumpSumSlider" min="0" max="100000" value="0" step="1000">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>Lump Sum Payment After (Years)</span>
+                <span class="tooltip" data-tooltip="When will you make this payment?">ⓘ</span>
+              </label>
+              <select id="lumpSumYear">
+                <option value="1">Year 1</option>
+                <option value="2">Year 2</option>
+                <option value="3">Year 3</option>
+                <option value="5" selected>Year 5</option>
+                <option value="10">Year 10</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetMortgageCalculator()">Reset Calculator</button>
+        </div>
+
+        <!-- RIGHT SIDE: RESULTS -->
+        <div class="calculator-results">
+          <h3>Your Results</h3>
+          
+          <div class="result-card highlight">
+            <div class="result-label">Monthly Payment</div>
+            <div class="result-value" id="monthlyPayment">£0</div>
+            <div class="result-subtext" id="paymentSubtext"></div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Loan Amount</div>
+              <div class="result-value-mini" id="loanAmount">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Total Interest</div>
+              <div class="result-value-mini" id="totalInterest">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Total Repayment</div>
+              <div class="result-value-mini" id="totalRepayment">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Interest Rate Type</div>
+              <div class="result-value-mini" id="rateType">Fixed</div>
+            </div>
+          </div>
+
+          <!-- Overpayment Savings -->
+          <div id="overpaymentSavings" class="hidden">
+            <div class="savings-highlight">
+              <h4>💡 Overpayment Impact</h4>
+              <div class="savings-grid">
+                <div class="saving-item">
+                  <span class="saving-label">Time Saved</span>
+                  <span class="saving-value" id="timeSaved">0 years</span>
+                </div>
+                <div class="saving-item">
+                  <span class="saving-label">Interest Saved</span>
+                  <span class="saving-value green" id="interestSaved">£0</span>
+                </div>
+                <div class="saving-item">
+                  <span class="saving-label">New Payoff Date</span>
+                  <span class="saving-value" id="newPayoffDate">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart Tabs -->
+          <div class="chart-tabs">
+            <button class="chart-tab active" data-chart="breakdown" onclick="switchChart('breakdown')">Payment Breakdown</button>
+            <button class="chart-tab" data-chart="timeline" onclick="switchChart('timeline')">Payment Timeline</button>
+          </div>
+
+          <div class="chart-container" id="breakdownChartContainer">
+            <canvas id="breakdownChart"></canvas>
+          </div>
+
+          <div class="chart-container hidden" id="timelineChartContainer">
+            <canvas id="timelineChart"></canvas>
+          </div>
+
+          <!-- PDF Export Button -->
+          <button class="btn btn-primary btn-full" onclick="showEmailModal()" style="margin-top: 1.5rem;">
+            📄 Download Results as PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- NEW: Detailed Payment Schedule -->
+      <div class="payment-schedule-section">
+        <h2>📊 Detailed Payment Schedule</h2>
+        <p class="text-muted">See how your mortgage balance decreases over time</p>
+        
+        <div class="schedule-controls">
+          <button class="btn btn-secondary" onclick="showSchedule('yearly')">Yearly View</button>
+          <button class="btn btn-secondary" onclick="showSchedule('monthly', 1)">First Year Monthly</button>
+          <button class="btn btn-secondary" onclick="exportScheduleCSV()">Export to CSV</button>
+        </div>
+
+        <div class="schedule-table-container">
+          <table class="schedule-table" id="paymentScheduleTable">
+            <thead>
+              <tr>
+                <th>Period</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Remaining Balance</th>
+                <th>Total Interest Paid</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- NEW: Interactive Jargon Buster -->
+      <div class="jargon-buster-section">
+        <h2>📚 Mortgage Jargon Buster</h2>
+        <p class="text-muted">Click on any term to learn more</p>
+        
+        <div class="jargon-grid">
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏠</span>
+              <span class="jargon-title">LTV (Loan to Value)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The percentage of the property value you're borrowing. For example, with a £80,000 deposit on a £400,000 property, your LTV is 80%. <strong>Lower LTV usually means better interest rates.</strong>
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💷</span>
+              <span class="jargon-title">Principal</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The original amount you borrowed (property price minus deposit). This is the money you need to pay back, excluding interest.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📈</span>
+              <span class="jargon-title">Interest Rate</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The percentage charged by the lender on top of the principal. It can be <strong>fixed</strong> (stays the same for a set period) or <strong>variable</strong> (changes with Bank of England base rate).
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">⏱️</span>
+              <span class="jargon-title">Mortgage Term</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The length of time you have to pay back your mortgage. Common terms are 25-30 years. <strong>Longer terms = lower monthly payments but more interest overall.</strong>
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔄</span>
+              <span class="jargon-title">Repayment Mortgage</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Each month you pay off both the interest and part of the principal. By the end of the term, you'll own the property outright. This is the most common and recommended type.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💰</span>
+              <span class="jargon-title">Interest-Only Mortgage</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              You only pay the interest each month. The principal stays the same. At the end of the term, you must repay the full amount borrowed in one lump sum. <strong>Riskier and harder to get.</strong>
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🎯</span>
+              <span class="jargon-title">Overpayment</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Paying extra each month or making lump sum payments to reduce your mortgage faster. Can save thousands in interest! Most lenders allow up to 10% overpayment per year without penalties.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔒</span>
+              <span class="jargon-title">Fixed Rate</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Your interest rate stays the same for a set period (usually 2-5 years). Gives payment certainty but usually has early repayment charges if you want to leave early.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📊</span>
+              <span class="jargon-title">Variable Rate</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Your interest rate can change, usually following the Bank of England base rate. Can be a <strong>tracker</strong> (follows base rate exactly) or <strong>SVR</strong> (Standard Variable Rate - lender decides).
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📋</span>
+              <span class="jargon-title">Mortgage in Principle (MIP)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Also called Agreement in Principle (AIP). A statement from a lender saying how much they'd likely lend you. Useful when house hunting to show sellers you're serious. Usually valid for 60-90 days.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏦</span>
+              <span class="jargon-title">Remortgage</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Switching your mortgage to a new lender or deal, usually when your fixed rate ends. Can save money by getting a better interest rate. Shop around 3-6 months before your current deal ends.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">⚡</span>
+              <span class="jargon-title">Early Repayment Charge (ERC)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              A fee charged if you pay off your mortgage early or overpay beyond the allowed limit (usually 10%). Common on fixed-rate mortgages. Can be 1-5% of the outstanding balance.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Standard Info Sections -->
+      <div class="info-section">
+        <h2>How This Enhanced Calculator Works</h2>
+        <p>Our enhanced mortgage calculator provides detailed insights into your mortgage:</p>
+        <ul>
+          <li><strong>Detailed Breakdowns:</strong> See exactly how much of each payment goes to principal vs interest</li>
+          <li><strong>Payment Schedule:</strong> View year-by-year or month-by-month payment progression</li>
+          <li><strong>Overpayment Scenarios:</strong> Model both regular monthly overpayments and one-time lump sum payments</li>
+          <li><strong>Interactive Visuals:</strong> Charts and graphs to visualize your mortgage journey</li>
+          <li><strong>PDF Export:</strong> Save and share your results</li>
+        </ul>
+      </div>
+
+      <div class="disclaimer">
+        <p><strong>⚠️ Disclaimer:</strong> This calculator provides estimates based on the information you provide. Actual mortgage offers may differ. Interest rates, fees, and terms vary between lenders. This tool is for guidance only and does not constitute financial advice. Always consult with a qualified mortgage advisor before making decisions.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Email Modal for PDF Export -->
+  <div id="emailModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeEmailModal()">&times;</span>
+      <h2>📧 Get Your Mortgage Report</h2>
+      <p>Enter your email to receive your detailed mortgage calculation report as a PDF.</p>
+      
+      <form onsubmit="generatePDF(event)" class="email-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="userEmail" placeholder="your.email@example.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="privacyConsent" required>
+            I agree to receive my mortgage report. We won't send marketing emails.
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-full">
+          Generate & Download PDF
+        </button>
+      </form>
+      
+      <p class="text-muted" style="font-size: 0.875rem; margin-top: 1rem;">
+        Your privacy is important to us. We only use your email to send the report. We don't store or share your data.
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About UK Financial Hub</h4>
+          <p>Free, accurate financial calculators for UK residents. Updated regularly with the latest tax rates and regulations.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More Tools</h4>
+          <ul class="footer-links">
+            <li><a href="simple-interest-calculator.html">Simple Interest</a></li>
+            <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+            <li><a href="investment-calculator.html">Investment Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 UK Financial Hub. All calculators updated for 2025/26 tax year. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/mortgage-enhanced.js"></script>
+</body>
+</html>
