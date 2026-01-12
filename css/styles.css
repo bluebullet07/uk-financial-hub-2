@@ -120,7 +120,9 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  min-height: 70px;
+  height: auto;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -130,6 +132,8 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .logo:hover {
@@ -137,11 +141,19 @@ a:hover {
   opacity: 0.9;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+}
+
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {

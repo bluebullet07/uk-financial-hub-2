@@ -1,4 +1,12 @@
+# robots.txt for UK Financial Hub
+
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://ukfinanceshub.com/sitemap.xml
+
+# Disallow any future admin or test directories
+Disallow: /admin/
+Disallow: /test/
+Disallow: /draft/
