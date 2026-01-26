@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB9H4BQPPR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XB9H4BQPPR');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK ISA Calculator 2025/26 | Calculate ISA Growth | UK Financial Hub</title>
+  <meta name="description" content="Free UK ISA calculator for 2025/26. Calculate how your ISA savings could grow tax-free. Compare Cash ISA vs Stocks & Shares ISA with compound interest projections.">
+  <meta name="keywords" content="ISA calculator UK, ISA growth calculator, Cash ISA calculator, Stocks and Shares ISA, ISA allowance 2026, ISA interest calculator">
+  
+  <link rel="canonical" href="https://ukfinanceshub.com/isa-calculator.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="mortgage-calculator-enhanced.html" class="nav-link">Mortgage</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
+          <li><a href="compound-interest-calculator.html" class="nav-link">Compound Interest</a></li>
+          <li><a href="investment-calculator.html" class="nav-link">Investment</a></li>
+          <li><a href="simple-interest-calculator.html" class="nav-link">Simple Interest</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>ISA Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>UK ISA Calculator 2025/26</h1>
+        <p>Calculate how your ISA savings could grow tax-free with compound interest. Compare Cash ISA vs Stocks & Shares ISA projections.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <!-- LEFT: INPUTS -->
+        <div class="calculator-inputs">
+          <h3>Your ISA Details</h3>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Initial Deposit</span>
+              <span class="tooltip" data-tooltip="How much you're starting with">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="initialDeposit" class="has-prefix" value="5000" min="0" max="100000" step="100">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="initialDepositSlider" min="0" max="20000" value="5000" step="100">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Monthly Contribution</span>
+              <span class="tooltip" data-tooltip="How much you'll add each month">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="monthlyContribution" class="has-prefix" value="500" min="0" max="1666" step="10">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="monthlyContributionSlider" min="0" max="1666" value="500" step="10">
+            </div>
+            <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.5rem;">
+              Annual: £<span id="annualContribution">6,000</span> (Max allowance: £20,000)
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>ISA Type</span>
+              <span class="tooltip" data-tooltip="Different ISAs have different typical returns">ⓘ</span>
+            </label>
+            <select id="isaType">
+              <option value="cash">Cash ISA (3-5% typical)</option>
+              <option value="stocks" selected>Stocks & Shares ISA (5-10% typical)</option>
+              <option value="custom">Custom Rate</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Expected Annual Return</span>
+              <span class="tooltip" data-tooltip="Average annual growth rate">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <input type="number" id="annualReturn" value="7" min="0" max="30" step="0.1">
+              <span class="input-suffix">%</span>
+            </div>
+            <div class="slider-container">
+              <input type="range" id="annualReturnSlider" min="0" max="15" value="7" step="0.5">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Investment Period</span>
+              <span class="tooltip" data-tooltip="How long you'll invest for">ⓘ</span>
+            </label>
+            <select id="timePeriod">
+              <option value="5">5 years</option>
+              <option value="10" selected>10 years</option>
+              <option value="15">15 years</option>
+              <option value="20">20 years</option>
+              <option value="25">25 years</option>
+              <option value="30">30 years</option>
+            </select>
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetISACalculator()">Reset Calculator</button>
+        </div>
+
+        <!-- RIGHT: RESULTS -->
+        <div class="calculator-results">
+          <h3>Your ISA Projection</h3>
+          
+          <div class="result-card highlight">
+            <div class="result-label">Total Value After <span id="yearsDisplay">10</span> Years</div>
+            <div class="result-value" id="totalValue">£92,175.54</div>
+            <div class="result-subtext" id="growthPercent">+41.8% growth on contributions</div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Total Contributions</div>
+              <div class="result-value-mini" id="totalContributions">£65,000.00</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Interest Earned</div>
+              <div class="result-value-mini" id="interestEarned">£27,175.54</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Tax Saved (Est.)</div>
+              <div class="result-value-mini" id="taxSaved">£5,435.11</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Effective Rate</div>
+              <div class="result-value-mini" id="effectiveRate">7.00%</div>
+            </div>
+          </div>
+
+          <!-- Breakdown -->
+          <div id="contributionBreakdown" style="margin: 1.5rem 0;">
+            <h4 style="margin-bottom: 1rem; color: var(--text-primary);">💰 Contribution Breakdown</h4>
+            <ul class="result-breakdown">
+              <li>
+                <span>Initial Deposit</span>
+                <strong id="breakdownInitial">£5,000.00</strong>
+              </li>
+              <li>
+                <span>Monthly Contributions (×<span id="monthCount">120</span>)</span>
+                <strong id="breakdownMonthly">£60,000.00</strong>
+              </li>
+              <li>
+                <span>Compound Interest</span>
+                <strong id="breakdownInterest" style="color: var(--success-color);">+£27,175.54</strong>
+              </li>
+              <li>
+                <span>Final Balance</span>
+                <strong id="breakdownTotal" style="color: var(--success-color);">£92,175.54</strong>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Chart Tabs -->
+          <div class="chart-tabs">
+            <button class="chart-tab active" onclick="switchISAChart('growth')">Growth Chart</button>
+            <button class="chart-tab" onclick="switchISAChart('breakdown')">Breakdown</button>
+          </div>
+
+          <div class="chart-container" id="growthChartContainer">
+            <canvas id="isaGrowthChart"></canvas>
+          </div>
+
+          <div class="chart-container hidden" id="breakdownChartContainer">
+            <canvas id="isaBreakdownChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Year by Year Table -->
+      <div class="payment-schedule-section">
+        <h2>📊 Year-by-Year Projection</h2>
+        <p class="text-muted">See how your ISA grows each year with compound interest</p>
+        
+        <div class="schedule-table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Contributions</th>
+                <th>Interest Earned</th>
+                <th>Total Balance</th>
+              </tr>
+            </thead>
+            <tbody id="yearlyTableBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ISA Comparison Section -->
+      <div class="payment-schedule-section">
+        <h2>💵 Cash ISA vs 📈 Stocks & Shares ISA</h2>
+        <p class="text-muted">Which ISA is right for you?</p>
+        
+        <div class="schedule-table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Cash ISA</th>
+                <th>Stocks & Shares ISA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Best for</strong></td>
+                <td>Short-term savings, emergency funds</td>
+                <td>Long-term growth (5+ years)</td>
+              </tr>
+              <tr>
+                <td><strong>Typical returns</strong></td>
+                <td>3-5% (variable)</td>
+                <td>5-10% (historical average)</td>
+              </tr>
+              <tr>
+                <td><strong>Risk level</strong></td>
+                <td>Very low - capital protected</td>
+                <td>Medium to high - value can fall</td>
+              </tr>
+              <tr>
+                <td><strong>Access to funds</strong></td>
+                <td>Usually instant</td>
+                <td>May take several days</td>
+              </tr>
+              <tr>
+                <td><strong>Minimum age</strong></td>
+                <td>16+</td>
+                <td>18+</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ISA Jargon Buster -->
+      <div class="jargon-buster-section">
+        <h2>📚 ISA Jargon Buster</h2>
+        <p class="text-muted">Click on any term to learn more</p>
+        
+        <div class="jargon-grid">
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💰</span>
+              <span class="jargon-title">ISA Allowance</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The maximum you can put into ISAs each tax year. For 2025/26, it's <strong>£20,000</strong>. You can split this across different ISA types, but the total cannot exceed £20,000.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔄</span>
+              <span class="jargon-title">Compound Interest</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Interest earned on both your original deposit AND previously earned interest. This creates a <strong>snowball effect</strong> - the longer you invest, the faster your money grows. Einstein reportedly called it the "eighth wonder of the world".
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏦</span>
+              <span class="jargon-title">Cash ISA</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              A tax-free savings account. Interest rates are set by the provider (like a savings account). Your money is protected by the FSCS up to <strong>£85,000</strong>. Low risk, but returns may not beat inflation.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📈</span>
+              <span class="jargon-title">Stocks & Shares ISA</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Invest in funds, shares, or bonds tax-free. Historically returns <strong>7-10% annually</strong> over long periods, but value can go down. Best for goals 5+ years away. You can choose index funds for simplicity.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📅</span>
+              <span class="jargon-title">Tax Year</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Runs from <strong>6 April to 5 April</strong>. Your ISA allowance resets each tax year. Unused allowance doesn't roll over - use it or lose it! Many people rush to use their allowance before 5 April.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔀</span>
+              <span class="jargon-title">ISA Transfer</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Moving your ISA to a different provider. <strong>Doesn't count towards your allowance</strong>. Important: always use the official transfer process - withdrawing and redepositing uses up your allowance!
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔓</span>
+              <span class="jargon-title">Flexible ISA</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              An ISA that lets you withdraw and replace money in the same tax year without affecting your allowance. Not all ISAs are flexible - check with your provider. Useful if you might need temporary access.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏠</span>
+              <span class="jargon-title">Lifetime ISA (LISA)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              For first home or retirement. Save up to <strong>£4,000/year</strong> and get a <strong>25% government bonus</strong> (up to £1,000). Must be 18-39 to open. Penalties apply for other withdrawals before age 60.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="info-section">
+        <h2>Why Use an ISA?</h2>
+        <p>ISAs (Individual Savings Accounts) let UK residents save and invest tax-free. All interest, dividends, and capital gains within an ISA are completely exempt from tax.</p>
+        
+        <h3>2025/26 ISA Allowance: £20,000</h3>
+        <p>You can split your allowance between different ISA types:</p>
+        <ul>
+          <li><strong>Cash ISA:</strong> Tax-free savings account</li>
+          <li><strong>Stocks & Shares ISA:</strong> Tax-free investments</li>
+          <li><strong>Innovative Finance ISA:</strong> Peer-to-peer lending</li>
+          <li><strong>Lifetime ISA:</strong> For first home or retirement (separate £4,000 limit)</li>
+        </ul>
+        
+        <h3>Key ISA Rules</h3>
+        <ul>
+          <li>You must be UK resident and 18+ (16+ for Cash ISA)</li>
+          <li>You can only pay into one of each ISA type per tax year</li>
+          <li>Unused allowance doesn't roll over</li>
+          <li>You can transfer between providers without using allowance</li>
+          <li>Withdrawals don't restore allowance (except flexible ISAs)</li>
+        </ul>
+        
+        <h3>The Power of Starting Early</h3>
+        <p>Thanks to compound interest, starting early makes a huge difference. Someone who invests £200/month from age 25 to 65 (40 years) will have significantly more than someone who invests £400/month from age 45 to 65 (20 years) - even though they contributed the same total amount!</p>
+      </div>
+
+      <div class="disclaimer">
+        <p><strong>⚠️ Disclaimer:</strong> This calculator provides projections based on assumed growth rates. Investment returns are not guaranteed and you may get back less than you invest. Past performance is not a reliable indicator of future results. This is for guidance only and not financial advice. Consider seeking independent financial advice.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About UK Financial Hub</h4>
+          <p>Free, accurate financial calculators for UK residents. Updated regularly with the latest tax rates and regulations.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="mortgage-calculator-enhanced.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More Tools</h4>
+          <ul class="footer-links">
+            <li><a href="simple-interest-calculator.html">Simple Interest</a></li>
+            <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+            <li><a href="investment-calculator.html">Investment Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 UK Financial Hub. All calculators updated for 2025/26 tax year. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script>
+    // ISA Calculator JavaScript
+    
+    // Elements
+    const initialDepositInput = document.getElementById('initialDeposit');
+    const initialDepositSlider = document.getElementById('initialDepositSlider');
+    const monthlyContributionInput = document.getElementById('monthlyContribution');
+    const monthlyContributionSlider = document.getElementById('monthlyContributionSlider');
+    const annualContributionDisplay = document.getElementById('annualContribution');
+    const isaTypeSelect = document.getElementById('isaType');
+    const annualReturnInput = document.getElementById('annualReturn');
+    const annualReturnSlider = document.getElementById('annualReturnSlider');
+    const timePeriodSelect = document.getElementById('timePeriod');
+
+    // Result elements
+    const yearsDisplay = document.getElementById('yearsDisplay');
+    const totalValueDisplay = document.getElementById('totalValue');
+    const growthPercentDisplay = document.getElementById('growthPercent');
+    const totalContributionsDisplay = document.getElementById('totalContributions');
+    const interestEarnedDisplay = document.getElementById('interestEarned');
+    const taxSavedDisplay = document.getElementById('taxSaved');
+    const effectiveRateDisplay = document.getElementById('effectiveRate');
+    const breakdownInitial = document.getElementById('breakdownInitial');
+    const breakdownMonthly = document.getElementById('breakdownMonthly');
+    const breakdownInterest = document.getElementById('breakdownInterest');
+    const breakdownTotal = document.getElementById('breakdownTotal');
+    const monthCount = document.getElementById('monthCount');
+    const yearlyTableBody = document.getElementById('yearlyTableBody');
+
+    // Charts
+    let growthChart = null;
+    let breakdownChart = null;
+
+    // ISA type rates
+    const isaRates = {
+      cash: 4.5,
+      stocks: 7,
+      custom: null
+    };
+
+    // Format currency
+    function formatCurrency(amount) {
+      return '£' + amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // Calculate ISA growth
+    function calculateISA() {
+      const initialDeposit = parseFloat(initialDepositInput.value) || 0;
+      const monthlyContribution = parseFloat(monthlyContributionInput.value) || 0;
+      const annualReturn = parseFloat(annualReturnInput.value) / 100;
+      const years = parseInt(timePeriodSelect.value);
+      const monthlyRate = annualReturn / 12;
+      const months = years * 12;
+
+      // Calculate year by year for table and chart
+      let balance = initialDeposit;
+      let totalContributions = initialDeposit;
+      const yearlyData = [];
+      const chartLabels = ['Start'];
+      const chartBalances = [initialDeposit];
+      const chartContributions = [initialDeposit];
+
+      for (let year = 1; year <= years; year++) {
+        let yearStartBalance = balance;
+        let yearContributions = 0;
+
+        for (let month = 1; month <= 12; month++) {
+          balance = balance * (1 + monthlyRate) + monthlyContribution;
+          yearContributions += monthlyContribution;
+        }
+
+        totalContributions += yearContributions;
+        const yearInterest = balance - totalContributions;
+
+        yearlyData.push({
+          year: year,
+          contributions: totalContributions,
+          interest: yearInterest,
+          balance: balance
+        });
+
+        chartLabels.push('Year ' + year);
+        chartBalances.push(balance);
+        chartContributions.push(totalContributions);
+      }
+
+      const totalInterest = balance - totalContributions;
+      const growthPercent = totalContributions > 0 ? ((totalInterest / totalContributions) * 100).toFixed(1) : 0;
+      
+      // Tax saved (assuming 20% basic rate on interest)
+      const taxSaved = totalInterest * 0.20;
+
+      // Update displays
+      yearsDisplay.textContent = years;
+      totalValueDisplay.textContent = formatCurrency(balance);
+      growthPercentDisplay.textContent = `+${growthPercent}% growth on contributions`;
+      totalContributionsDisplay.textContent = formatCurrency(totalContributions);
+      interestEarnedDisplay.textContent = formatCurrency(totalInterest);
+      taxSavedDisplay.textContent = formatCurrency(taxSaved);
+      effectiveRateDisplay.textContent = (annualReturn * 100).toFixed(2) + '%';
+
+      breakdownInitial.textContent = formatCurrency(initialDeposit);
+      breakdownMonthly.textContent = formatCurrency(monthlyContribution * months);
+      breakdownInterest.textContent = '+' + formatCurrency(totalInterest);
+      breakdownTotal.textContent = formatCurrency(balance);
+      monthCount.textContent = months;
+
+      // Update annual contribution display
+      annualContributionDisplay.textContent = (monthlyContribution * 12).toLocaleString('en-GB');
+
+      // Update table
+      yearlyTableBody.innerHTML = yearlyData.map(row => `
+        <tr>
+          <td>Year ${row.year}</td>
+          <td>${formatCurrency(row.contributions)}</td>
+          <td>${formatCurrency(row.interest)}</td>
+          <td><strong>${formatCurrency(row.balance)}</strong></td>
+        </tr>
+      `).join('');
+
+      // Update charts
+      updateGrowthChart(chartLabels, chartBalances, chartContributions);
+      updateBreakdownChart(totalContributions, totalInterest);
+    }
+
+    // Update growth chart
+    function updateGrowthChart(labels, balances, contributions) {
+      const ctx = document.getElementById('isaGrowthChart').getContext('2d');
+
+      if (growthChart) {
+        growthChart.destroy();
+      }
+
+      growthChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Total Value',
+              data: balances,
+              borderColor: '#4361ee',
+              backgroundColor: 'rgba(67, 97, 238, 0.1)',
+              fill: true,
+              tension: 0.3
+            },
+            {
+              label: 'Contributions',
+              data: contributions,
+              borderColor: '#10b981',
+              backgroundColor: 'transparent',
+              borderDash: [5, 5],
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + formatCurrency(context.raw);
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  if (value >= 1000000) {
+                    return '£' + (value / 1000000).toFixed(1) + 'M';
+                  } else if (value >= 1000) {
+                    return '£' + (value / 1000).toFixed(0) + 'k';
+                  }
+                  return '£' + value;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Update breakdown chart
+    function updateBreakdownChart(contributions, interest) {
+      const ctx = document.getElementById('isaBreakdownChart').getContext('2d');
+
+      if (breakdownChart) {
+        breakdownChart.destroy();
+      }
+
+      breakdownChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Contributions', 'Interest Earned'],
+          datasets: [{
+            data: [contributions, interest],
+            backgroundColor: ['#4361ee', '#10b981'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + formatCurrency(context.raw);
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Switch chart tabs
+    function switchISAChart(chartType) {
+      document.querySelectorAll('.chart-tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.chart-container').forEach(container => container.classList.add('hidden'));
+      
+      event.target.classList.add('active');
+      
+      if (chartType === 'growth') {
+        document.getElementById('growthChartContainer').classList.remove('hidden');
+      } else {
+        document.getElementById('breakdownChartContainer').classList.remove('hidden');
+      }
+    }
+
+    // Sync sliders and inputs
+    function syncInputs() {
+      initialDepositSlider.addEventListener('input', () => {
+        initialDepositInput.value = initialDepositSlider.value;
+        calculateISA();
+      });
+
+      initialDepositInput.addEventListener('input', () => {
+        initialDepositSlider.value = Math.min(initialDepositInput.value, 20000);
+        calculateISA();
+      });
+
+      monthlyContributionSlider.addEventListener('input', () => {
+        monthlyContributionInput.value = monthlyContributionSlider.value;
+        calculateISA();
+      });
+
+      monthlyContributionInput.addEventListener('input', () => {
+        monthlyContributionSlider.value = Math.min(monthlyContributionInput.value, 1666);
+        calculateISA();
+      });
+
+      annualReturnSlider.addEventListener('input', () => {
+        annualReturnInput.value = annualReturnSlider.value;
+        calculateISA();
+      });
+
+      annualReturnInput.addEventListener('input', () => {
+        annualReturnSlider.value = Math.min(annualReturnInput.value, 15);
+        calculateISA();
+      });
+
+      isaTypeSelect.addEventListener('change', () => {
+        const type = isaTypeSelect.value;
+        if (isaRates[type] !== null) {
+          annualReturnInput.value = isaRates[type];
+          annualReturnSlider.value = isaRates[type];
+        }
+        annualReturnInput.disabled = type !== 'custom';
+        annualReturnSlider.disabled = type !== 'custom';
+        calculateISA();
+      });
+
+      timePeriodSelect.addEventListener('change', calculateISA);
+    }
+
+    // Reset calculator
+    function resetISACalculator() {
+      initialDepositInput.value = 5000;
+      initialDepositSlider.value = 5000;
+      monthlyContributionInput.value = 500;
+      monthlyContributionSlider.value = 500;
+      isaTypeSelect.value = 'stocks';
+      annualReturnInput.value = 7;
+      annualReturnSlider.value = 7;
+      annualReturnInput.disabled = false;
+      annualReturnSlider.disabled = false;
+      timePeriodSelect.value = '10';
+      calculateISA();
+    }
+
+    // Toggle jargon cards
+    function toggleJargon(card) {
+      card.classList.toggle('active');
+    }
+
+    // Initialize
+    syncInputs();
+    calculateISA();
+  </script>
+</body>
+</html>
