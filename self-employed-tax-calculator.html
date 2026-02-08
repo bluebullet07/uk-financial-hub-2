@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XB9H4BQPPR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XB9H4BQPPR');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self Employed Tax Calculator UK 2026 | Calculate Income Tax, Class 2 & 4 NI | UK Financial Hub</title>
+  <meta name="description" content="Free self-employed tax calculator for 2026. Calculate income tax, Class 2 and Class 4 National Insurance for sole traders and freelancers. Updated for 2025/26 tax year. Instant results with overpayment scenarios.">
+  <meta name="keywords" content="self employed tax calculator, sole trader tax calculator, freelancer tax UK, class 2 NI calculator, class 4 national insurance, self assessment tax calculator">
+  
+  <link rel="canonical" href="https://ukfinanceshub.com/self-employed-tax-calculator.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UK Self Employed Tax Calculator",
+    "url": "https://ukfinanceshub.com/self-employed-tax-calculator.html",
+    "description": "Calculate self-employed tax including income tax, Class 2 and Class 4 National Insurance for UK sole traders and freelancers",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">💷 UK Financial Hub</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="income-tax-calculator.html" class="nav-link">Tax</a></li>
+          <li><a href="self-employed-tax-calculator.html" class="nav-link active">Self Employed Tax</a></li>
+          <li><a href="stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
+          <li><a href="compound-interest-calculator.html" class="nav-link">Compound Interest</a></li>
+        <li><a href="investment-calculator.html" class="nav-link">Investment</a></li>
+        <li><a href="simple-interest-calculator.html" class="nav-link">Simple Interest</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Self Employed Tax Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>Self Employed Tax Calculator</h1>
+        <p>Calculate your income tax, Class 2 and Class 4 National Insurance. See detailed breakdowns and explore expense scenarios to minimize your tax bill.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <!-- LEFT SIDE: INPUTS -->
+        <div class="calculator-inputs">
+          <h3>Calculate Your Tax</h3>
+          
+          <!-- Quick Examples -->
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary" style="flex: 1; min-width: 120px; font-size: 0.875rem; padding: 0.5rem 0.75rem;" onclick="setExample(35000, 5000)">📊 Freelancer (£35k)</button>
+            <button class="btn btn-secondary" style="flex: 1; min-width: 120px; font-size: 0.875rem; padding: 0.5rem 0.75rem;" onclick="setExample(50000, 8000)">💻 Contractor (£50k)</button>
+            <button class="btn btn-secondary" style="flex: 1; min-width: 120px; font-size: 0.875rem; padding: 0.5rem 0.75rem;" onclick="setExample(75000, 15000)">🏢 Business (£75k)</button>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <span>Annual Turnover</span>
+              <span class="tooltip" data-tooltip="Your total business income before any expenses">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="turnover" class="has-prefix" value="50000" min="0" max="500000" step="1000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="turnoverSlider" min="0" max="200000" value="50000" step="1000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Business Expenses</span>
+              <span class="tooltip" data-tooltip="Costs wholly and exclusively for business: equipment, travel, professional fees, insurance">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="expenses" class="has-prefix" value="8000" min="0" max="200000" step="500">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="expensesSlider" min="0" max="50000" value="8000" step="500">
+            </div>
+            <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.5rem;">
+              Profit: <strong>£<span id="profitDisplay">42,000</span></strong>
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Pension Contributions (optional)</span>
+              <span class="tooltip" data-tooltip="Personal pension contributions get tax relief">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="pension" class="has-prefix" value="0" min="0" max="100000" step="500">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="pensionSlider" min="0" max="20000" value="0" step="500">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Student Loan Plan</span>
+              <span class="tooltip" data-tooltip="Select your student loan plan if applicable">ⓘ</span>
+            </label>
+            <select id="studentLoan">
+              <option value="none">No Student Loan</option>
+              <option value="plan1">Plan 1 (Started before Sept 2012)</option>
+              <option value="plan2">Plan 2 (Started Sept 2012 - July 2023)</option>
+              <option value="plan4">Plan 4 (Scotland)</option>
+              <option value="plan5">Plan 5 (Started Aug 2023+)</option>
+            </select>
+          </div>
+
+          <!-- Tax Optimization Section -->
+          <div class="overpayment-section">
+            <h4 style="margin: 1.5rem 0 1rem 0; color: var(--text-primary);">💡 Tax Optimization</h4>
+            
+            <div class="form-group">
+              <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <input type="checkbox" id="tradingAllowance" style="width: auto; height: auto;">
+                <span>Use Trading Allowance (£1,000)</span>
+                <span class="tooltip" data-tooltip="£1,000 tax-free allowance instead of actual expenses">ⓘ</span>
+              </label>
+              <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.25rem;">
+                Better when expenses < £1,000
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>Additional Deductions</span>
+                <span class="tooltip" data-tooltip="Capital allowances, home office, mileage, etc.">ⓘ</span>
+              </label>
+              <div class="input-group">
+                <span class="input-prefix">£</span>
+                <input type="number" id="additionalDeductions" class="has-prefix" value="0" min="0" max="50000" step="100">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetCalculator()">Reset Calculator</button>
+        </div>
+
+        <!-- RIGHT SIDE: RESULTS -->
+        <div class="calculator-results">
+          <h3>Your Results</h3>
+          
+          <div class="result-card highlight">
+            <div class="result-label">Your Take-Home</div>
+            <div class="result-value" id="takeHome">£0</div>
+            <div class="result-subtext" id="takeHomePercent"></div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Taxable Profit</div>
+              <div class="result-value-mini" id="taxableProfit">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Income Tax</div>
+              <div class="result-value-mini" id="incomeTax">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Class 2 NI</div>
+              <div class="result-value-mini" id="class2NI">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Class 4 NI</div>
+              <div class="result-value-mini" id="class4NI">£0</div>
+            </div>
+          </div>
+
+          <!-- Total Tax Card -->
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.25rem; border-radius: 12px; margin: 1.5rem 0;">
+            <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: 0.5rem;">Total Tax & NI</div>
+            <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;" id="totalTax">£0</div>
+            <div style="font-size: 0.875rem; opacity: 0.9;">
+              Effective rate: <span id="effectiveRate">0%</span>
+            </div>
+          </div>
+
+          <!-- Chart Tabs -->
+          <div class="chart-tabs">
+            <button class="chart-tab active" data-chart="breakdown" onclick="switchChart('breakdown')">Tax Breakdown</button>
+            <button class="chart-tab" data-chart="comparison" onclick="switchChart('comparison')">Monthly View</button>
+          </div>
+
+          <div class="chart-container" id="breakdownChartContainer">
+            <canvas id="breakdownChart"></canvas>
+          </div>
+
+          <div class="chart-container hidden" id="comparisonChartContainer">
+            <canvas id="comparisonChart"></canvas>
+          </div>
+
+          <!-- Learn More Button -->
+          <a href="self-employed-tax-calculator-2026-guide.html" class="btn btn-primary btn-full" style="margin-top: 1.5rem; text-decoration: none; display: block; text-align: center;">
+            📚 Read Full Tax Guide
+          </a>
+        </div>
+      </div>
+
+      <!-- Tax Breakdown Table -->
+      <div class="payment-schedule-section">
+        <h2>📊 Detailed Tax Breakdown</h2>
+        <p class="text-muted">See exactly how your tax is calculated</p>
+        
+        <div class="schedule-table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Calculation</th>
+                <th>Rate</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody id="taxBreakdownBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Jargon Buster -->
+      <div class="jargon-buster-section">
+        <h2>📚 Self-Employment Tax Jargon Buster</h2>
+        <p class="text-muted">Click on any term to learn more</p>
+        
+        <div class="jargon-grid">
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💼</span>
+              <span class="jargon-title">Class 2 NI</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Flat weekly amount (£3.45/week = £179.40/year for 2025/26) paid if your profits exceed £6,725. Gives you State Pension credits and access to certain benefits.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📈</span>
+              <span class="jargon-title">Class 4 NI</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Percentage-based NI on profits: <strong>9% on £12,570-£50,270</strong>, then <strong>2% above £50,270</strong>. Unlike Class 2, this doesn't give additional benefit rights.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💷</span>
+              <span class="jargon-title">Taxable Profit</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Turnover minus allowable expenses and deductions. This is what you pay tax on, not your total income. <strong>Lower taxable profit = lower tax.</strong>
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📝</span>
+              <span class="jargon-title">Self Assessment</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Annual tax return you must file if self-employed. Deadline: <strong>31 January</strong> for online filing. Late filing = £100 minimum penalty, plus daily penalties after 3 months.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💰</span>
+              <span class="jargon-title">Payment on Account</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              HMRC makes you pay tax in advance for next year. You pay 50% by 31 Jan and 50% by 31 July. <strong>Budget for 1.5x your tax bill in January!</strong>
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🎁</span>
+              <span class="jargon-title">Trading Allowance</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              £1,000 tax-free allowance. If turnover under £1,000, it's all tax-free. If over, choose £1,000 allowance OR actual expenses — whichever is better.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏠</span>
+              <span class="jargon-title">Allowable Expenses</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Costs "wholly and exclusively" for business: office supplies, travel, equipment, professional fees, insurance. <strong>Not allowable:</strong> personal costs, entertainment, clothes (unless uniform).
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🚗</span>
+              <span class="jargon-title">Mileage Allowance</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Claim business miles at HMRC rates: <strong>45p per mile</strong> (first 10,000), then 25p. Motorcycles: 24p. Bicycles: 20p. Keep detailed mileage logs!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h2>How This Calculator Works</h2>
+        <p>Our self-employed tax calculator provides accurate estimates for 2025/26:</p>
+        <ul>
+          <li><strong>Income Tax:</strong> Calculated on profit above £12,570 at 20%, 40%, or 45%</li>
+          <li><strong>Class 2 NI:</strong> £3.45/week (£179.40/year) if profit over £6,725</li>
+          <li><strong>Class 4 NI:</strong> 9% on profits £12,570-£50,270, then 2% above</li>
+          <li><strong>Visual Breakdowns:</strong> Charts showing where your money goes</li>
+          <li><strong>Tax Optimization:</strong> See impact of expenses and deductions</li>
+        </ul>
+      </div>
+
+      <div class="disclaimer">
+        <p><strong>⚠️ Disclaimer:</strong> This calculator provides estimates based on 2025/26 tax year rates. Your actual tax may vary based on other income, allowances, and personal circumstances. This tool is for guidance only and does not constitute financial advice. Always verify calculations with HMRC or a qualified accountant.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About UK Financial Hub</h4>
+          <p>Free, accurate financial calculators for UK residents. Updated regularly with the latest tax rates and regulations.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="mortgage-calculator-enhanced.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="self-employed-tax-calculator.html">Self-Employed Tax</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More Tools</h4>
+          <ul class="footer-links">
+            <li><a href="simple-interest-calculator.html">Simple Interest</a></li>
+            <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+            <li><a href="investment-calculator.html">Investment Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 UK Financial Hub. All calculators updated for 2025/26 tax year. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script>
+    // 2025/26 Tax Constants
+    const PERSONAL_ALLOWANCE = 12570;
+    const BASIC_RATE_LIMIT = 50270;
+    const HIGHER_RATE_LIMIT = 125140;
+    const CLASS_2_THRESHOLD = 6725;
+    const CLASS_2_WEEKLY = 3.45;
+    const CLASS_4_LOWER = 12570;
+    const CLASS_4_UPPER = 50270;
+    const TRADING_ALLOWANCE = 1000;
+
+    // Student Loan Thresholds
+    const STUDENT_LOAN_THRESHOLDS = {
+      'plan1': 24990,
+      'plan2': 27295,
+      'plan4': 31395,
+      'plan5': 25000
+    };
+
+    let breakdownChart = null;
+    let comparisonChart = null;
+
+    // Sync inputs with sliders
+    function syncInput(inputId, sliderId) {
+      const input = document.getElementById(inputId);
+      const slider = document.getElementById(sliderId);
+      
+      input.addEventListener('input', () => {
+        slider.value = input.value;
+        calculateTax();
+      });
+      
+      slider.addEventListener('input', () => {
+        input.value = slider.value;
+        calculateTax();
+      });
+    }
+
+    // Initialize syncing
+    syncInput('turnover', 'turnoverSlider');
+    syncInput('expenses', 'expensesSlider');
+    syncInput('pension', 'pensionSlider');
+
+    // Calculate on any input change
+    document.querySelectorAll('input, select').forEach(el => {
+      el.addEventListener('change', calculateTax);
+      el.addEventListener('input', calculateTax);
+    });
+
+    function calculateTax() {
+      const turnover = parseFloat(document.getElementById('turnover').value) || 0;
+      let expenses = parseFloat(document.getElementById('expenses').value) || 0;
+      const pension = parseFloat(document.getElementById('pension').value) || 0;
+      const useTradingAllowance = document.getElementById('tradingAllowance').checked;
+      const additionalDeductions = parseFloat(document.getElementById('additionalDeductions').value) || 0;
+      const studentLoanPlan = document.getElementById('studentLoan').value;
+
+      // Apply trading allowance if beneficial
+      if (useTradingAllowance && expenses < TRADING_ALLOWANCE) {
+        expenses = TRADING_ALLOWANCE;
+      }
+
+      // Calculate profit
+      let profit = turnover - expenses - pension - additionalDeductions;
+      if (profit < 0) profit = 0;
+
+      // Update profit display
+      document.getElementById('profitDisplay').textContent = profit.toLocaleString('en-GB');
+
+      // Income Tax
+      let incomeTax = 0;
+      if (profit > PERSONAL_ALLOWANCE) {
+        const taxable = profit - PERSONAL_ALLOWANCE;
+        
+        if (taxable <= (BASIC_RATE_LIMIT - PERSONAL_ALLOWANCE)) {
+          incomeTax = taxable * 0.20;
+        } else if (taxable <= (HIGHER_RATE_LIMIT - PERSONAL_ALLOWANCE)) {
+          const basic = BASIC_RATE_LIMIT - PERSONAL_ALLOWANCE;
+          const higher = taxable - basic;
+          incomeTax = (basic * 0.20) + (higher * 0.40);
+        } else {
+          const basic = BASIC_RATE_LIMIT - PERSONAL_ALLOWANCE;
+          const higher = HIGHER_RATE_LIMIT - BASIC_RATE_LIMIT;
+          const additional = taxable - (HIGHER_RATE_LIMIT - PERSONAL_ALLOWANCE);
+          incomeTax = (basic * 0.20) + (higher * 0.40) + (additional * 0.45);
+        }
+      }
+
+      // Class 2 NI
+      const class2 = profit > CLASS_2_THRESHOLD ? CLASS_2_WEEKLY * 52 : 0;
+
+      // Class 4 NI
+      let class4 = 0;
+      if (profit > CLASS_4_LOWER) {
+        if (profit <= CLASS_4_UPPER) {
+          class4 = (profit - CLASS_4_LOWER) * 0.09;
+        } else {
+          const lower = CLASS_4_UPPER - CLASS_4_LOWER;
+          const upper = profit - CLASS_4_UPPER;
+          class4 = (lower * 0.09) + (upper * 0.02);
+        }
+      }
+
+      // Student Loan
+      let studentLoan = 0;
+      if (studentLoanPlan !== 'none' && STUDENT_LOAN_THRESHOLDS[studentLoanPlan]) {
+        const threshold = STUDENT_LOAN_THRESHOLDS[studentLoanPlan];
+        if (profit > threshold) {
+          studentLoan = (profit - threshold) * 0.09;
+        }
+      }
+
+      const totalTax = incomeTax + class2 + class4 + studentLoan;
+      const takeHome = profit - totalTax;
+      const effectiveRate = profit > 0 ? (totalTax / profit * 100) : 0;
+
+      // Update Display
+      document.getElementById('taxableProfit').textContent = '£' + profit.toLocaleString('en-GB', {maximumFractionDigits: 0});
+      document.getElementById('incomeTax').textContent = '£' + incomeTax.toLocaleString('en-GB', {maximumFractionDigits: 0});
+      document.getElementById('class2NI').textContent = '£' + class2.toLocaleString('en-GB', {maximumFractionDigits: 0});
+      document.getElementById('class4NI').textContent = '£' + class4.toLocaleString('en-GB', {maximumFractionDigits: 0});
+      document.getElementById('totalTax').textContent = '£' + totalTax.toLocaleString('en-GB', {maximumFractionDigits: 0});
+      document.getElementById('takeHome').textContent = '£' + takeHome.toLocaleString('en-GB', {maximumFractionDigits: 0});
+      document.getElementById('effectiveRate').textContent = effectiveRate.toFixed(1) + '%';
+      document.getElementById('takeHomePercent').textContent = `${((takeHome/profit)*100).toFixed(1)}% of profit`;
+
+      // Update breakdown table
+      updateBreakdownTable(profit, incomeTax, class2, class4, studentLoan);
+
+      // Update charts
+      updateCharts(incomeTax, class2, class4, studentLoan, takeHome);
+    }
+
+    function updateBreakdownTable(profit, incomeTax, class2, class4, studentLoan) {
+      const tbody = document.getElementById('taxBreakdownBody');
+      let html = '';
+
+      html += `
+        <tr>
+          <td><strong>Income Tax</strong></td>
+          <td>On profit above £${PERSONAL_ALLOWANCE.toLocaleString()}</td>
+          <td>20% / 40% / 45%</td>
+          <td><strong>£${incomeTax.toLocaleString('en-GB', {maximumFractionDigits: 0})}</strong></td>
+        </tr>
+      `;
+
+      html += `
+        <tr>
+          <td><strong>Class 2 NI</strong></td>
+          <td>${profit > CLASS_2_THRESHOLD ? '£3.45/week × 52' : 'Below threshold'}</td>
+          <td>Flat rate</td>
+          <td><strong>£${class2.toLocaleString('en-GB', {maximumFractionDigits: 0})}</strong></td>
+        </tr>
+      `;
+
+      html += `
+        <tr>
+          <td><strong>Class 4 NI</strong></td>
+          <td>On profit £${CLASS_4_LOWER.toLocaleString()} - £${CLASS_4_UPPER.toLocaleString()}</td>
+          <td>9% then 2%</td>
+          <td><strong>£${class4.toLocaleString('en-GB', {maximumFractionDigits: 0})}</strong></td>
+        </tr>
+      `;
+
+      if (studentLoan > 0) {
+        html += `
+          <tr>
+            <td><strong>Student Loan</strong></td>
+            <td>Above threshold</td>
+            <td>9%</td>
+            <td><strong>£${studentLoan.toLocaleString('en-GB', {maximumFractionDigits: 0})}</strong></td>
+          </tr>
+        `;
+      }
+
+      tbody.innerHTML = html;
+    }
+
+    function updateCharts(incomeTax, class2, class4, studentLoan, takeHome) {
+      // Breakdown Chart (Pie)
+      const breakdownCtx = document.getElementById('breakdownChart').getContext('2d');
+      
+      if (breakdownChart) breakdownChart.destroy();
+      
+      breakdownChart = new Chart(breakdownCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Take-Home', 'Income Tax', 'Class 2 NI', 'Class 4 NI', studentLoan > 0 ? 'Student Loan' : ''].filter(Boolean),
+          datasets: [{
+            data: [takeHome, incomeTax, class2, class4, studentLoan > 0 ? studentLoan : 0].filter((v, i) => i === 0 || v > 0),
+            backgroundColor: ['#10b981', '#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': £' + context.parsed.toLocaleString('en-GB', {maximumFractionDigits: 0});
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // Monthly Chart (Bar)
+      const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+      
+      if (comparisonChart) comparisonChart.destroy();
+      
+      const monthlyTakeHome = takeHome / 12;
+      const monthlyTax = (incomeTax + class2 + class4 + studentLoan) / 12;
+      
+      comparisonChart = new Chart(comparisonCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Monthly Take-Home', 'Monthly Tax'],
+          datasets: [{
+            label: '£ per month',
+            data: [monthlyTakeHome, monthlyTax],
+            backgroundColor: ['#10b981', '#3b82f6']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return '£' + context.parsed.y.toLocaleString('en-GB', {maximumFractionDigits: 0});
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return '£' + value.toLocaleString('en-GB', {maximumFractionDigits: 0});
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function switchChart(chart) {
+      document.querySelectorAll('.chart-tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.chart-container').forEach(container => container.classList.add('hidden'));
+      
+      document.querySelector(`[data-chart="${chart}"]`).classList.add('active');
+      document.getElementById(chart + 'ChartContainer').classList.remove('hidden');
+    }
+
+    function setExample(turnover, expenses) {
+      document.getElementById('turnover').value = turnover;
+      document.getElementById('turnoverSlider').value = turnover;
+      document.getElementById('expenses').value = expenses;
+      document.getElementById('expensesSlider').value = expenses;
+      document.getElementById('pension').value = 0;
+      document.getElementById('pensionSlider').value = 0;
+      document.getElementById('tradingAllowance').checked = false;
+      document.getElementById('additionalDeductions').value = 0;
+      calculateTax();
+    }
+
+    function resetCalculator() {
+      document.getElementById('turnover').value = 50000;
+      document.getElementById('turnoverSlider').value = 50000;
+      document.getElementById('expenses').value = 8000;
+      document.getElementById('expensesSlider').value = 8000;
+      document.getElementById('pension').value = 0;
+      document.getElementById('pensionSlider').value = 0;
+      document.getElementById('tradingAllowance').checked = false;
+      document.getElementById('additionalDeductions').value = 0;
+      document.getElementById('studentLoan').value = 'none';
+      calculateTax();
+    }
+
+    // Initial calculation
+    calculateTax();
+  </script>
+</body>
+</html>
