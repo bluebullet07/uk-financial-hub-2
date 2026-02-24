@@ -56,8 +56,11 @@ function updateChart(data) {
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
+        x: { ticks: { color: '#B4B4BC' }, grid: { color: '#27272a' } },
         y: {
+          grid: { color: '#27272a' },
           ticks: {
+            color: '#B4B4BC',
             callback: function(value) {
               return '£' + (value / 1000).toFixed(0) + 'k';
             }

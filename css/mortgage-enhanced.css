@@ -85,7 +85,7 @@
 }
 
 .saving-value.green {
-  color: #d1fae5;
+  color: var(--success-light, #6EE7B7);
 }
 
 /* Chart Tabs */
@@ -174,7 +174,7 @@
 }
 
 .schedule-table .highlight-row {
-  background-color: #fef3c7 !important;
+  background-color: rgba(251, 191, 36, 0.15) !important;
   font-weight: 600;
 }
 
@@ -210,7 +210,7 @@
 
 .jargon-card.active {
   border-color: var(--primary-color);
-  background-color: white;
+  background-color: var(--bg-card, #16161F);
 }
 
 .jargon-term {
@@ -532,4 +532,48 @@
   .jargon-card {
     page-break-inside: avoid;
   }
+}
+
+
+/* ============================================================
+   DARK THEME: Jargon Card Overrides
+   ============================================================ */
+
+.jargon-buster-section {
+  background-color: #16161F !important;
+  border: 1px solid #27272A;
+}
+
+.jargon-card {
+  background-color: #1A1A25 !important;
+  border-color: #27272A !important;
+}
+
+.jargon-card:hover {
+  border-color: #818CF8 !important;
+}
+
+.jargon-card.active {
+  background-color: #1E1E2A !important;
+  border-color: #818CF8 !important;
+}
+
+.jargon-title {
+  color: #FFFFFF !important;
+}
+
+.jargon-toggle {
+  color: #818CF8 !important;
+}
+
+.jargon-definition {
+  color: #B4B4BC !important;
+}
+
+.jargon-definition strong {
+  color: #FFFFFF !important;
+}
+
+.jargon-card.active .jargon-definition {
+  border-top-color: #27272A !important;
 }

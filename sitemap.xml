@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://ukfinanceshub.com/</loc>
-    <lastmod>2026-01-12</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -20,6 +20,20 @@
   <url>
     <loc>https://ukfinanceshub.com/income-tax-calculator.html</loc>
     <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://ukfinanceshub.com/self-employed-tax-calculator.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://ukfinanceshub.com/inheritance-tax-calculator.html</loc>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -58,22 +72,30 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-    <!-- Calculator (navigation) -->
-<url>
-  <loc>https://ukfinanceshub.com/self-employed-tax-calculator.html</loc>
-  <priority>0.9</priority>
-</url>
   
   <!-- Blog Index -->
   <url>
     <loc>https://ukfinanceshub.com/blog.html</loc>
-    <lastmod>2026-01-12</lastmod>
+    <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Blog Posts -->
+  <!-- Blog Posts / Guides -->
+  <url>
+    <loc>https://ukfinanceshub.com/inheritance-tax-calculator-2026-guide.html</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ukfinanceshub.com/self-employed-tax-calculator-2026-guide.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://ukfinanceshub.com/mortgage-calculator-2026-guide.html</loc>
     <lastmod>2026-01-11</lastmod>
@@ -88,20 +110,13 @@
     <priority>0.8</priority>
   </url>
 
-    <url>
+  <url>
     <loc>https://ukfinanceshub.com/stamp-duty-guide-2026.html</loc>
     <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
 
-
-<!-- Blog post (SEO) -->
-<url>
-  <loc>https://ukfinanceshub.com/self-employed-tax-calculator-2026-guide.html</loc>
-  <priority>0.8</priority>
-</url>
   <!-- Company Pages -->
   <url>
     <loc>https://ukfinanceshub.com/about.html</loc>

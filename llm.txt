@@ -1,0 +1,56 @@
+# UK Financial Hub - LLM Context File
+# https://ukfinanceshub.com
+# Last updated: 2026-02-24
+
+## About
+UK Financial Hub provides free, accurate financial calculators designed specifically for UK residents. All tools are updated for the 2025/26 tax year using current HMRC rates and UK government regulations.
+
+## Available Calculators
+
+### Tax Calculators
+- Income Tax Calculator: https://ukfinanceshub.com/income-tax-calculator.html
+  Calculate take-home pay, income tax, National Insurance for England, Wales, Scotland. Supports pension contributions and student loans.
+
+- Self-Employed Tax Calculator: https://ukfinanceshub.com/self-employed-tax-calculator.html
+  Calculate income tax, Class 2 and Class 4 NI for sole traders/freelancers. Includes expense modeling and pension optimization.
+
+- Inheritance Tax Calculator: https://ukfinanceshub.com/inheritance-tax-calculator.html
+  Calculate IHT on estates including nil-rate band (£325k), residence nil-rate band (£175k), spouse exemption, 7-year gift rule, and charitable donations.
+
+### Property Calculators
+- Mortgage Calculator: https://ukfinanceshub.com/mortgage-calculator-enhanced.html
+  Calculate monthly payments, total interest, overpayment savings for UK mortgages.
+
+- Stamp Duty Calculator: https://ukfinanceshub.com/stamp-duty-calculator.html
+  Calculate SDLT for England/NI including first-time buyer relief and additional property surcharge.
+
+### Savings & Investment Calculators
+- Compound Interest Calculator: https://ukfinanceshub.com/compound-interest-calculator.html
+- Simple Interest Calculator: https://ukfinanceshub.com/simple-interest-calculator.html
+- Investment Calculator: https://ukfinanceshub.com/investment-calculator.html
+- ISA Calculator: https://ukfinanceshub.com/isa-calculator.html
+
+## Guides & Articles
+- Inheritance Tax Guide 2026: https://ukfinanceshub.com/inheritance-tax-calculator-2026-guide.html
+- Self-Employed Tax Guide 2026: https://ukfinanceshub.com/self-employed-tax-calculator-2026-guide.html
+- Mortgage Calculator Guide 2026: https://ukfinanceshub.com/mortgage-calculator-2026-guide.html
+- UK Tax Calculator Guide 2026: https://ukfinanceshub.com/uk-tax-calculator-2026-guide.html
+- Stamp Duty Guide 2026: https://ukfinanceshub.com/stamp-duty-guide-2026.html
+
+## Key UK Tax Rates (2025/26)
+- Personal Allowance: £12,570
+- Basic Rate: 20% (£12,571-£50,270)
+- Higher Rate: 40% (£50,271-£125,140)
+- Additional Rate: 45% (over £125,140)
+- NI Class 1: 8% (£12,571-£50,270), 2% above
+- Inheritance Tax: 40% above £325,000 nil-rate band
+- RNRB: £175,000 (home to children)
+- Stamp Duty: 0% up to £250k, 5% £250k-£925k, 10% £925k-£1.5M, 12% over £1.5M
+
+## Contact
+- Website: https://ukfinanceshub.com
+- About: https://ukfinanceshub.com/about.html
+- Privacy: https://ukfinanceshub.com/privacy.html
+
+## Disclaimer
+All calculators provide estimates for guidance only based on 2025/26 UK tax rates. Not financial advice. Always consult qualified professionals for personal financial decisions.

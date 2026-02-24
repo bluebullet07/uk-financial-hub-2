@@ -324,7 +324,9 @@ function updateTaxBandsChart(breakdown) {
       scales: {
         y: {
           beginAtZero: true,
+          grid: { color: '#27272a' },
           ticks: {
+            color: '#B4B4BC',
             callback: function(value) {
               return '£' + (value / 1000).toFixed(0) + 'k';
             }
@@ -371,7 +373,7 @@ function updateTaxBandTable(breakdown) {
     `;
     
     if (band.name.includes('Personal Allowance')) {
-      row.style.backgroundColor = '#f0fdf4';
+      row.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
     }
   });
 }

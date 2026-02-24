@@ -136,7 +136,7 @@ function updateSDLTBreakdownChart(price, breakdown) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'bottom', labels: { padding: 15, font: { size: 11 } } },
+        legend: { position: 'bottom', labels: { padding: 15, font: { size: 11 }, color: '#B4B4BC' } },
         tooltip: {
           callbacks: {
             label: function(context) {
@@ -180,9 +180,12 @@ function updateSDLTComparisonChart(ftb, standard, additional) {
         }
       },
       scales: {
+        x: { ticks: { color: '#B4B4BC' }, grid: { color: '#27272a' } },
         y: {
           beginAtZero: true,
+          grid: { color: '#27272a' },
           ticks: {
+            color: '#B4B4BC',
             callback: function(value) {
               return '£' + (value / 1000).toFixed(0) + 'k';
             }

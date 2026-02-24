@@ -39,7 +39,7 @@ function updateChart(principal, interest) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'bottom' },
+        legend: { position: 'bottom', labels: { color: '#B4B4BC' } },
         tooltip: {
           callbacks: {
             label: function(context) {

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XB9H4BQPPR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XB9H4BQPPR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inheritance Tax Calculator UK 2026 | IHT Calculator | UK Financial Hub</title>
+  <meta name="description" content="Free UK inheritance tax calculator for 2026. Calculate IHT on your estate including nil-rate band, residence nil-rate band, spouse exemption and gifts. See what your family will pay.">
+  <meta name="keywords" content="inheritance tax calculator UK, IHT calculator, inheritance tax UK 2026, estate tax calculator, nil rate band calculator, residence nil rate band">
+
+  <link rel="canonical" href="https://ukfinanceshub.com/inheritance-tax-calculator.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ukfinanceshub.com/inheritance-tax-calculator.html">
+  <meta property="og:title" content="Inheritance Tax Calculator UK 2026 | Free IHT Calculator">
+  <meta property="og:description" content="Calculate how much inheritance tax your estate will owe. Free IHT calculator with nil-rate band, RNRB, spouse exemption and gift planning.">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ukfinanceshub.com/inheritance-tax-calculator.html">
+  <meta property="twitter:title" content="Inheritance Tax Calculator UK 2026 | Free IHT Calculator">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/mortgage-enhanced.css">
+  <link rel="stylesheet" href="css/dropdown-nav.css">
+
+  <!-- Chart.js & jsPDF -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "UK Inheritance Tax Calculator 2026",
+    "url": "https://ukfinanceshub.com/inheritance-tax-calculator.html",
+    "description": "Calculate inheritance tax on your estate including nil-rate band, residence nil-rate band, spouse exemption and 7-year gift rule for UK estates",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        UK Financial Hub
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+
+          <!-- Tax Calculators Dropdown -->
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              Tax Calculators <span class="arrow">▼</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="income-tax-calculator.html">💷 Income Tax Calculator</a></li>
+              <li><a href="self-employed-tax-calculator.html">💼 Self-Employed Tax</a></li>
+              <li><a href="inheritance-tax-calculator.html">🏛️ Inheritance Tax</a></li>
+            </ul>
+          </li>
+
+          <!-- Property Dropdown -->
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              Property <span class="arrow">▼</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="mortgage-calculator-enhanced.html">🏠 Mortgage Calculator</a></li>
+              <li><a href="stamp-duty-calculator.html">🏛️ Stamp Duty Calculator</a></li>
+            </ul>
+          </li>
+
+          <!-- Savings & Investment Dropdown -->
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle">
+              Savings <span class="arrow">▼</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="compound-interest-calculator.html">📈 Compound Interest</a></li>
+              <li><a href="simple-interest-calculator.html">💰 Simple Interest</a></li>
+              <li><a href="investment-calculator.html">📊 Investment Calculator</a></li>
+            </ul>
+          </li>
+
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Inheritance Tax Calculator</span>
+      </div>
+
+      <div class="calculator-header">
+        <h1>UK Inheritance Tax Calculator 2026</h1>
+        <p>Calculate how much inheritance tax (IHT) your estate will owe. See nil-rate bands, spouse exemptions, and what your beneficiaries will actually receive.</p>
+      </div>
+
+      <div class="calculator-layout">
+        <!-- LEFT SIDE: INPUTS -->
+        <div class="calculator-inputs">
+          <h3>Your Estate Details</h3>
+
+          <!-- Quick Examples -->
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary" style="flex: 1; min-width: 100px; font-size: 0.8rem; padding: 0.5rem 0.5rem;" onclick="setIHTExample(350000, 50000, 0, 'single', true)">🏠 £400k Single</button>
+            <button class="btn btn-secondary" style="flex: 1; min-width: 100px; font-size: 0.8rem; padding: 0.5rem 0.5rem;" onclick="setIHTExample(500000, 200000, 100000, 'widowed', true)">👨‍👩‍👧 £800k Widowed</button>
+            <button class="btn btn-secondary" style="flex: 1; min-width: 100px; font-size: 0.8rem; padding: 0.5rem 0.5rem;" onclick="setIHTExample(750000, 300000, 200000, 'married', true)">💍 £1.25M Married</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Property Value</span>
+              <span class="tooltip" data-tooltip="Market value of your main home and any other property">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="propertyValue" class="has-prefix" value="350000" min="0" max="5000000" step="10000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="propertyValueSlider" min="0" max="2000000" value="350000" step="10000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Savings & Cash</span>
+              <span class="tooltip" data-tooltip="Bank accounts, cash ISAs, premium bonds, cash holdings">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="savingsValue" class="has-prefix" value="100000" min="0" max="5000000" step="5000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="savingsValueSlider" min="0" max="1000000" value="100000" step="5000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Investments & Pensions</span>
+              <span class="tooltip" data-tooltip="Stocks, shares ISAs, investment funds, non-exempt pensions, crypto">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="investmentsValue" class="has-prefix" value="50000" min="0" max="5000000" step="5000">
+            </div>
+            <div class="slider-container">
+              <input type="range" id="investmentsValueSlider" min="0" max="1000000" value="50000" step="5000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Other Assets</span>
+              <span class="tooltip" data-tooltip="Cars, jewellery, art, life insurance payouts not in trust, business assets">ⓘ</span>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">£</span>
+              <input type="number" id="otherAssetsValue" class="has-prefix" value="0" min="0" max="5000000" step="1000">
+            </div>
+            <p class="text-muted" style="font-size: 0.875rem; margin-top: 0.5rem;">
+              Total estate: <strong>£<span id="estateTotal">500,000</span></strong>
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Marital Status</span>
+              <span class="tooltip" data-tooltip="Married/civil partner estates pass tax-free to spouse on first death">ⓘ</span>
+            </label>
+            <select id="maritalStatus">
+              <option value="single" selected>Single / Divorced</option>
+              <option value="married">Married / Civil Partner</option>
+              <option value="widowed">Widowed (inheriting spouse's NRB)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <input type="checkbox" id="passToChildren" checked style="width: auto; height: auto;">
+              <span>Passing main home to children/grandchildren</span>
+              <span class="tooltip" data-tooltip="Qualifies for Residence Nil-Rate Band (RNRB) — extra £175k allowance">ⓘ</span>
+            </label>
+            <p class="text-muted" style="font-size: 0.875rem;">
+              Adds £175k RNRB to your tax-free allowance
+            </p>
+          </div>
+
+          <!-- Planning Section -->
+          <div class="overpayment-section">
+            <h4 style="margin: 1.5rem 0 1rem 0; color: var(--text-primary);">💡 Estate Planning</h4>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>Gifts Made in Last 7 Years</span>
+                <span class="tooltip" data-tooltip="Gifts above annual exemptions that may be taxable if you die within 7 years">ⓘ</span>
+              </label>
+              <div class="input-group">
+                <span class="input-prefix">£</span>
+                <input type="number" id="giftsLast7" class="has-prefix" value="0" min="0" max="2000000" step="1000">
+              </div>
+              <div class="slider-container">
+                <input type="range" id="giftsLast7Slider" min="0" max="500000" value="0" step="1000">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>Charitable Donations (in will)</span>
+                <span class="tooltip" data-tooltip="Leaving 10%+ to charity reduces IHT rate from 40% to 36%">ⓘ</span>
+              </label>
+              <div class="input-group">
+                <span class="input-prefix">£</span>
+                <input type="number" id="charitableDonation" class="has-prefix" value="0" min="0" max="2000000" step="1000">
+              </div>
+              <div class="slider-container">
+                <input type="range" id="charitableDonationSlider" min="0" max="500000" value="0" step="1000">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>Liabilities (debts, mortgage, funeral)</span>
+                <span class="tooltip" data-tooltip="Outstanding mortgage, loans, and estimated funeral costs are deducted">ⓘ</span>
+              </label>
+              <div class="input-group">
+                <span class="input-prefix">£</span>
+                <input type="number" id="liabilities" class="has-prefix" value="0" min="0" max="2000000" step="1000">
+              </div>
+              <div class="slider-container">
+                <input type="range" id="liabilitiesSlider" min="0" max="500000" value="0" step="1000">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-full" onclick="resetIHTCalculator()">Reset Calculator</button>
+        </div>
+
+        <!-- RIGHT SIDE: RESULTS -->
+        <div class="calculator-results">
+          <h3>Your IHT Results</h3>
+
+          <div class="result-card highlight">
+            <div class="result-label">Inheritance Tax Due</div>
+            <div class="result-value" id="totalIHT">£0</div>
+            <div class="result-subtext" id="ihtSubtext">Based on your estate details</div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card-mini">
+              <div class="result-label-mini">Gross Estate</div>
+              <div class="result-value-mini" id="grossEstateDisplay">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Tax-Free Allowance</div>
+              <div class="result-value-mini" id="nilRateDisplay">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Taxable Amount</div>
+              <div class="result-value-mini" id="taxableDisplay">£0</div>
+            </div>
+            <div class="result-card-mini">
+              <div class="result-label-mini">Effective IHT Rate</div>
+              <div class="result-value-mini" id="effectiveRateDisplay">0%</div>
+            </div>
+          </div>
+
+          <!-- Beneficiaries Card -->
+          <div style="background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; padding: 1.25rem; border-radius: 12px; margin: 1.5rem 0;">
+            <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: 0.5rem;">Beneficiaries Receive</div>
+            <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;" id="beneficiariesReceive">£0</div>
+            <div style="font-size: 0.875rem; opacity: 0.9;" id="beneficiariesPercent"></div>
+          </div>
+
+          <!-- Allowance info -->
+          <p class="text-muted" id="nrbInfo" style="font-size: 0.8rem; margin-bottom: 1.5rem;"></p>
+
+          <!-- Chart Tabs -->
+          <div class="chart-tabs">
+            <button class="chart-tab active" data-chart="ihtBreakdown" onclick="switchIHTChart('ihtBreakdown')">Estate Breakdown</button>
+            <button class="chart-tab" data-chart="ihtComparison" onclick="switchIHTChart('ihtComparison')">Scenario Compare</button>
+          </div>
+
+          <div class="chart-container" id="ihtBreakdownChartContainer">
+            <canvas id="ihtBreakdownChart"></canvas>
+          </div>
+
+          <div class="chart-container hidden" id="ihtComparisonChartContainer">
+            <canvas id="ihtComparisonChart"></canvas>
+          </div>
+
+          <!-- Read Full Guide -->
+          <a href="inheritance-tax-calculator-2026-guide.html" class="btn btn-primary btn-full" style="margin-top: 1.5rem; text-decoration: none; display: block; text-align: center;">
+            📚 Read Full IHT Guide
+          </a>
+
+          <!-- PDF Export -->
+          <button class="btn btn-secondary btn-full" onclick="showEmailModal()" style="margin-top: 0.75rem;">
+            📄 Download IHT Report as PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- IHT Breakdown Table -->
+      <div class="payment-schedule-section">
+        <h2>📊 Detailed IHT Breakdown</h2>
+        <p class="text-muted">See exactly how your inheritance tax is calculated</p>
+
+        <div class="schedule-table-container">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Calculation</th>
+                <th>Rate</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody id="ihtBreakdownBody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Jargon Buster -->
+      <div class="jargon-buster-section">
+        <h2>📚 Inheritance Tax Jargon Buster</h2>
+        <p class="text-muted">Click on any term to learn more</p>
+
+        <div class="jargon-grid">
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏛️</span>
+              <span class="jargon-title">Nil-Rate Band (NRB)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The first <strong>£325,000</strong> of your estate is tax-free. This threshold has been frozen since 2009. A surviving spouse/civil partner can inherit their partner's unused NRB, giving a potential <strong>£650,000</strong> allowance.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏠</span>
+              <span class="jargon-title">Residence Nil-Rate Band (RNRB)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              An extra <strong>£175,000</strong> allowance if you pass your main home to children or grandchildren. Transferable for married couples (up to <strong>£350,000</strong>). Tapers for estates over £2 million, reducing by £1 for every £2 above.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💍</span>
+              <span class="jargon-title">Spouse Exemption</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Everything left to a spouse or civil partner is <strong>completely exempt from IHT</strong>. On the first death, no tax is paid regardless of estate size. The deceased's unused NRB and RNRB transfer to the surviving partner.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🎁</span>
+              <span class="jargon-title">7-Year Rule (PETs)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Gifts made more than 7 years before death are tax-free. Gifts within 7 years are "Potentially Exempt Transfers" (PETs). Tax reduces with <strong>taper relief</strong>: 3-4 years (32% tax), 4-5 (24%), 5-6 (16%), 6-7 (8%).
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💰</span>
+              <span class="jargon-title">Annual Gift Exemption</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              You can give away <strong>£3,000 per year</strong> completely free of IHT. Unused allowance carries forward one year (max £6,000). Plus unlimited <strong>£250 small gifts</strong> to different people, and normal gifts from income.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">❤️</span>
+              <span class="jargon-title">Charitable Donations</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Gifts to charity in your will are <strong>fully exempt from IHT</strong>. If you leave at least 10% of your net estate to charity, the IHT rate drops from <strong>40% to 36%</strong>. This can save your family significant tax.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📈</span>
+              <span class="jargon-title">Taper Relief</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Reduces IHT on gifts made 3-7 years before death. Only applies to gifts above the NRB. 3-4 years: <strong>20% off</strong>, 4-5: 40% off, 5-6: 60% off, 6-7: 80% off, 7+: no tax. Doesn't reduce the value of the gift.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🏢</span>
+              <span class="jargon-title">Business Property Relief (BPR)</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Qualifying business assets can receive <strong>50% or 100% IHT relief</strong>. Includes unquoted company shares (100%), business/partnership interest (100%), quoted shares (50%). Must be owned 2+ years. AIM-listed shares often qualify.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">📋</span>
+              <span class="jargon-title">Probate</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              The legal process of administering a deceased person's estate. A <strong>Grant of Probate</strong> gives executors legal authority to deal with the estate. IHT must usually be paid <strong>before probate is granted</strong> (within 6 months of death).
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🔒</span>
+              <span class="jargon-title">Trusts & IHT</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Assets in trust may be outside your estate for IHT. Discretionary trusts have a 20% entry charge on amounts over NRB plus periodic charges. <strong>Life insurance trusts</strong> are common — pays out without adding to your estate.
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">🌾</span>
+              <span class="jargon-title">Agricultural Property Relief</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              Qualifying agricultural land and buildings can receive <strong>50% or 100% IHT relief</strong>. Must be occupied for agricultural purposes for 2+ years (owner-occupied) or 7+ years (let). Includes farmhouses "of a character appropriate."
+            </div>
+          </div>
+
+          <div class="jargon-card" onclick="toggleJargon(this)">
+            <div class="jargon-term">
+              <span class="jargon-icon">💳</span>
+              <span class="jargon-title">Paying IHT</span>
+              <span class="jargon-toggle">▼</span>
+            </div>
+            <div class="jargon-definition">
+              IHT must be paid within <strong>6 months of death</strong>. Interest charged after that. IHT on property can be paid in 10 annual instalments. Executors are personally liable. Usually paid from estate funds before assets are distributed.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="info-section">
+        <h2>How UK Inheritance Tax Works</h2>
+        <p>Inheritance tax is charged at 40% on the value of your estate above the nil-rate band when you die. Here's what you need to know:</p>
+
+        <h3>Key IHT Thresholds for 2025/26</h3>
+        <ul>
+          <li><strong>Nil-Rate Band:</strong> First £325,000 is tax-free (£650,000 for married couples)</li>
+          <li><strong>Residence Nil-Rate Band:</strong> Extra £175,000 if passing home to children (£350,000 for couples)</li>
+          <li><strong>Maximum Tax-Free:</strong> Up to £1,000,000 for married couple leaving home to children</li>
+          <li><strong>IHT Rate:</strong> 40% on everything above your combined allowances</li>
+          <li><strong>Charity Rate:</strong> Reduced to 36% if leaving 10%+ of net estate to charity</li>
+        </ul>
+
+        <h3>Who Pays Inheritance Tax?</h3>
+        <ul>
+          <li><strong>Estates over £325,000</strong> (or £500,000 with RNRB) may owe IHT</li>
+          <li><strong>Executors</strong> are responsible for calculating and paying IHT from the estate</li>
+          <li><strong>Beneficiaries</strong> receive their inheritance after IHT has been deducted</li>
+          <li><strong>Gifts within 7 years</strong> of death may also trigger IHT</li>
+        </ul>
+
+        <h3>Ways to Legally Reduce IHT</h3>
+        <ul>
+          <li><strong>Make gifts:</strong> Use annual £3,000 exemption and gift surplus income</li>
+          <li><strong>Leave to spouse:</strong> Unlimited spouse exemption on first death</li>
+          <li><strong>Leave home to children:</strong> Qualify for £175k RNRB</li>
+          <li><strong>Donate to charity:</strong> 10%+ donation cuts rate from 40% to 36%</li>
+          <li><strong>Use trusts:</strong> Discretionary trusts can protect assets</li>
+          <li><strong>Life insurance:</strong> Write policy into trust to pay IHT bill</li>
+          <li><strong>Business/agricultural relief:</strong> Qualifying assets get 50-100% relief</li>
+        </ul>
+      </div>
+
+      <div class="disclaimer">
+        <p><strong>⚠️ Disclaimer:</strong> This calculator provides estimates based on 2025/26 IHT rules. Actual inheritance tax liability depends on specific circumstances including domicile, trusts, business property, and HMRC valuations. This is for guidance only and not legal or financial advice. Consult a qualified estate planner, solicitor, or tax advisor for personalised advice.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Email Modal -->
+  <div id="emailModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeEmailModal()">&times;</span>
+      <h2>📧 Get Your IHT Report</h2>
+      <p>Enter your email to receive your inheritance tax calculation report as a PDF.</p>
+
+      <form onsubmit="generateIHTPDF(event)" class="email-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="userEmail" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="privacyConsent" required>
+            I agree to receive my IHT report. We won't send marketing emails.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          Generate & Download PDF
+        </button>
+      </form>
+
+      <p class="text-muted" style="font-size: 0.875rem; margin-top: 1rem;">
+        Your privacy is important. We only use your email to send the report.
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About UK Financial Hub</h4>
+          <p>Free, accurate financial calculators for UK residents. Updated regularly with the latest tax rates and regulations.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Calculators</h4>
+          <ul class="footer-links">
+            <li><a href="mortgage-calculator-enhanced.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+            <li><a href="self-employed-tax-calculator.html">Self-Employed Tax</a></li>
+            <li><a href="inheritance-tax-calculator.html">Inheritance Tax</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>More Tools</h4>
+          <ul class="footer-links">
+            <li><a href="simple-interest-calculator.html">Simple Interest</a></li>
+            <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+            <li><a href="investment-calculator.html">Investment Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 UK Financial Hub. All calculators updated for 2025/26 tax year. Not financial advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/inheritance-tax.js"></script>
+</body>
+</html>

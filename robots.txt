@@ -6,6 +6,9 @@ Allow: /
 # Sitemap
 Sitemap: https://ukfinanceshub.com/sitemap.xml
 
+# LLM / AI Agent information
+LLM-Txt: https://ukfinanceshub.com/llm.txt
+
 # Disallow any future admin or test directories
 Disallow: /admin/
 Disallow: /test/

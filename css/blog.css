@@ -35,7 +35,7 @@
 }
 
 .post-intro {
-  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
   padding: 1.5rem;
   border-radius: var(--radius-md);
   margin-bottom: 2rem;
@@ -56,6 +56,7 @@
   margin: 2rem 0;
 }
 
+.cta-box h2,
 .cta-box h3 {
   color: white;
   margin-bottom: 0.5rem;
@@ -69,7 +70,8 @@
 .cta-button {
   display: inline-block;
   background: white;
-  color: var(--primary-color);
+  color: #6366F1;
+  font-weight: 700;
   padding: 1rem 2rem;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -100,7 +102,7 @@
 
 .cta-subtext {
   font-size: 0.9rem;
-  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.85) !important;
   margin-top: 0.5rem;
 }
 
@@ -130,7 +132,7 @@
 }
 
 .comparison-table tr.highlight {
-  background: #fef3c7;
+  background: rgba(251, 191, 36, 0.15);
 }
 
 .table-note {
@@ -166,7 +168,7 @@
 }
 
 .scenario-result {
-  background: white;
+  background: var(--bg-card, #16161F);
   padding: 1rem;
   border-radius: var(--radius-sm);
 }
@@ -191,14 +193,14 @@
 .scenario-tip {
   margin-top: 1rem;
   padding: 1rem;
-  background: #dbeafe;
+  background: rgba(96, 165, 250, 0.15);
   border-radius: var(--radius-sm);
   font-size: 0.95rem;
 }
 
 /* Insight Boxes */
 .insight-box {
-  background: #fef3c7;
+  background: rgba(251, 191, 36, 0.15);
   padding: 1.5rem;
   border-radius: var(--radius-md);
   border-left: 4px solid var(--warning-color);
@@ -281,7 +283,7 @@
 }
 
 .faq-question:hover {
-  background: #e5e7eb;
+  background: var(--border, #27272A);
 }
 
 .faq-question::after {
@@ -531,7 +533,7 @@
 
 .blog-hero-badge {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   padding: 0.5rem 1rem;
   border-radius: 50px;
   font-size: 0.875rem;
@@ -692,18 +694,18 @@
 }
 
 .blog-category.mortgage {
-  background: #d1fae5;
-  color: #065f46;
+  background: rgba(52, 211, 153, 0.15);
+  color: #6EE7B7;
 }
 
 .blog-category.tax {
-  background: #dbeafe;
-  color: #1e40af;
+  background: rgba(96, 165, 250, 0.15);
+  color: #93C5FD;
 }
 
 .blog-category.property {
-  background: #fef3c7;
-  color: #92400e;
+  background: rgba(251, 191, 36, 0.15);
+  color: #FCD34D;
 }
 
 .blog-date {
@@ -861,10 +863,10 @@
 .cta-button-large {
   display: inline-block;
   background: white;
-  color: var(--primary-color);
+  color: #6366F1;
   padding: 1rem 2.5rem;
   border-radius: var(--radius-md);
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   transition: var(--transition);
   font-size: 1.125rem;
@@ -874,4 +876,252 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   text-decoration: none;
+}
+
+
+/* ============================================================
+   DARK THEME EXPLICIT OVERRIDES
+   Ensure all text is visible on dark backgrounds
+   ============================================================ */
+
+.blog-post,
+.blog-content {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.blog-post p,
+.blog-post li,
+.blog-post span,
+.blog-post td {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+.blog-post h1,
+.blog-post h2,
+.blog-post h3,
+.blog-post h4,
+.blog-post strong,
+.blog-post th {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.blog-post a {
+  color: var(--primary-color, #818CF8);
+}
+
+/* Scenario sections */
+.example-scenario {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.scenario-input {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+.scenario-input strong {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.scenario-result {
+  background: var(--bg-elevated, #1E1E2A) !important;
+  border: 1px solid var(--border, #27272A);
+}
+
+.result-item {
+  color: var(--text-secondary, #B4B4BC);
+  border-bottom-color: var(--border, #27272A);
+}
+
+.result-item .label {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+.result-item .value {
+  color: var(--text-primary, #FFFFFF);
+  font-weight: 600;
+}
+
+.result-item.highlight .label,
+.result-item.highlight .value {
+  color: var(--primary, #818CF8);
+}
+
+.scenario-tip {
+  color: var(--text-primary, #FFFFFF);
+}
+
+/* Calculation boxes */
+.calculation-box {
+  color: var(--text-primary, #FFFFFF);
+  border-color: var(--border, #27272A);
+}
+
+.calculation-box p,
+.calculation-box li {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+/* Comparison tables */
+.comparison-table table {
+  background: var(--bg-card, #16161F) !important;
+}
+
+.comparison-table th {
+  background: var(--bg-tertiary, #1A1A25);
+  color: var(--text-primary, #FFFFFF);
+}
+
+.comparison-table td {
+  color: var(--text-secondary, #B4B4BC);
+  border-bottom-color: var(--border, #27272A);
+}
+
+/* Insight boxes */
+.insight-box {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.insight-box p {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+/* CTA boxes */
+/* CTA override removed - handled by main rules */
+
+/* Mistake cards */
+.mistake-card {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.mistake-content p {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+/* FAQ sections */
+.faq-question {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.faq-answer,
+.faq-answer p {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+/* Post intro */
+.post-intro {
+  color: var(--text-primary, #FFFFFF);
+}
+
+/* Numbered strategy cards */
+.strategy-card,
+.numbered-card {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.strategy-card p,
+.numbered-card p {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+/* Related tools */
+.related-tool {
+  color: var(--text-primary, #FFFFFF);
+}
+
+.related-tool p {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+/* Breadcrumb */
+.breadcrumb,
+.breadcrumb a {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+.breadcrumb a:hover {
+  color: var(--primary, #818CF8);
+}
+
+/* Post meta */
+.post-meta span {
+  color: var(--text-muted, #9CA3AF);
+}
+
+/* Disclaimer */
+.post-footer p,
+.disclaimer p {
+  color: var(--text-secondary, #B4B4BC);
+}
+
+/* Table note */
+.table-note {
+  color: var(--text-muted, #9CA3AF);
+}
+
+/* ============================================================
+   BULLETPROOF DARK THEME OVERRIDES
+   ============================================================ */
+
+/* Share Buttons - solid filled, white text */
+a.share-btn {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+}
+
+a.share-btn.linkedin {
+  background: #0077b5 !important;
+}
+
+a.share-btn.twitter {
+  background: #1da1f2 !important;
+}
+
+a.share-btn.facebook {
+  background: #4267B2 !important;
+}
+
+/* Post footer */
+.post-footer h4,
+.post-share h4 {
+  color: #FFFFFF !important;
+}
+
+.post-footer strong {
+  color: #FFFFFF !important;
+}
+
+.post-info p {
+  color: #B4B4BC !important;
+}
+
+/* CTA subtext on gradient backgrounds */
+.cta-subtext {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* FAQ in blog posts */
+.faq-question {
+  color: #FFFFFF !important;
+  background: #1A1A25 !important;
+  border: 1px solid #27272A !important;
+}
+
+.faq-question:hover {
+  border-color: #818CF8 !important;
+}
+
+.faq-answer,
+.faq-answer p {
+  color: #B4B4BC !important;
+}
+
+.faq-answer strong {
+  color: #FFFFFF !important;
+}
+
+.faq-answer ul,
+.faq-answer li {
+  color: #B4B4BC !important;
 }

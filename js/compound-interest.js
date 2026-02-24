@@ -81,7 +81,9 @@ function updateCharts() {
       plugins: { legend: { display: false } },
       scales: {
         y: {
+          grid: { color: '#27272a' },
           ticks: {
+            color: '#B4B4BC',
             callback: function(value) {
               return '£' + (value / 1000).toFixed(0) + 'k';
             }
@@ -109,7 +111,7 @@ function updateCharts() {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { position: 'bottom' },
+        legend: { position: 'bottom', labels: { color: '#B4B4BC' } },
         tooltip: {
           callbacks: {
             label: function(context) {

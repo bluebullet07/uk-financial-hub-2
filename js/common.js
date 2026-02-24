@@ -1,48 +1,130 @@
-// ==========================================================================
-// UK Financial Hub - Common Utilities
-// ==========================================================================
+/* ==========================================================================
+   UK Financial Hub - Common JavaScript
+   Dark Theme + Calculator Utilities
+   ========================================================================== */
 
-/**
- * Format number as UK currency (£)
- * @param {number} amount - Amount to format
- * @param {number} decimals - Number of decimal places (default: 2)
- * @returns {string} Formatted currency string
- */
-function formatCurrency(amount, decimals = 2) {
-  return new Intl.NumberFormat('en-GB', {
-    style: 'currency',
-    currency: 'GBP',
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(amount);
+document.addEventListener('DOMContentLoaded', function() {
+  initMobileMenu();
+  initDropdowns();
+  initSliders();
+  highlightActivePage();
+  initFAQ();
+});
+
+/* ==========================================================================
+   Mobile Menu Toggle
+   ========================================================================== */
+
+function initMobileMenu() {
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const menu = document.querySelector('.nav-menu');
+  
+  if (!toggle || !menu) return;
+  
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+    
+    const isOpen = menu.classList.contains('active');
+    toggle.setAttribute('aria-expanded', isOpen);
+    
+    if (!isOpen) {
+      document.querySelectorAll('.dropdown').forEach(dd => {
+        dd.classList.remove('active');
+      });
+    }
+  });
+  
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      if (!e.target.closest('.nav-container')) {
+        menu.classList.remove('active');
+        toggle.classList.remove('active');
+        document.querySelectorAll('.dropdown').forEach(dd => {
+          dd.classList.remove('active');
+        });
+      }
+    }
+  });
+}
+
+/* ==========================================================================
+   Dropdown Functionality
+   ========================================================================== */
+
+function initDropdowns() {
+  const dropdowns = document.querySelectorAll('.dropdown');
+  
+  dropdowns.forEach(function(dropdown) {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    
+    if (!toggle) return;
+    
+    toggle.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        dropdowns.forEach(function(other) {
+          if (other !== dropdown) {
+            other.classList.remove('active');
+          }
+        });
+        
+        dropdown.classList.toggle('active');
+      }
+    });
+    
+    toggle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        dropdown.classList.toggle('active');
+        
+        const menu = dropdown.querySelector('.dropdown-menu');
+        const firstLink = menu?.querySelector('a');
+        if (dropdown.classList.contains('active') && firstLink) {
+          setTimeout(() => firstLink.focus(), 100);
+        }
+      }
+      
+      if (e.key === 'Escape') {
+        dropdown.classList.remove('active');
+        toggle.focus();
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   Slider/Input Sync
+   ========================================================================== */
+
+function initSliders() {
+  document.querySelectorAll('input[type="range"]').forEach(slider => {
+    const inputId = slider.id.replace('Slider', '');
+    const input = document.getElementById(inputId);
+    
+    if (input) {
+      slider.addEventListener('input', function() {
+        input.value = this.value;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      
+      input.addEventListener('input', function() {
+        if (parseFloat(this.value) >= parseFloat(slider.min) && 
+            parseFloat(this.value) <= parseFloat(slider.max)) {
+          slider.value = this.value;
+        }
+      });
+    }
+  });
 }
 
 /**
- * Format number with commas
- * @param {number} num - Number to format
- * @param {number} decimals - Number of decimal places (default: 0)
- * @returns {string} Formatted number string
- */
-function formatNumber(num, decimals = 0) {
-  return new Intl.NumberFormat('en-GB', {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(num);
-}
-
-/**
- * Parse currency string to number
- * @param {string} str - String to parse
- * @returns {number} Parsed number
- */
-function parseCurrency(str) {
-  return parseFloat(str.replace(/[£,]/g, '')) || 0;
-}
-
-/**
- * Sync slider with input field
- * @param {HTMLInputElement} slider - Range input element
- * @param {HTMLInputElement} input - Number input element
+ * Legacy slider sync function (used by some calculator JS files)
  */
 function syncSliderAndInput(slider, input) {
   slider.addEventListener('input', (e) => {
@@ -61,12 +143,129 @@ function syncSliderAndInput(slider, input) {
   });
 }
 
-/**
- * Debounce function to limit calculation frequency
- * @param {Function} func - Function to debounce
- * @param {number} wait - Milliseconds to wait
- * @returns {Function} Debounced function
- */
+/* ==========================================================================
+   Highlight Active Page
+   ========================================================================== */
+
+function highlightActivePage() {
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  
+  document.querySelectorAll('.nav-link').forEach(link => {
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+    }
+  });
+  
+  document.querySelectorAll('.dropdown-menu a').forEach(link => {
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+      
+      const parentDropdown = link.closest('.dropdown');
+      if (parentDropdown) {
+        const parentToggle = parentDropdown.querySelector('.dropdown-toggle');
+        if (parentToggle) {
+          parentToggle.classList.add('active');
+        }
+      }
+    }
+  });
+}
+
+/* ==========================================================================
+   FAQ Toggle
+   ========================================================================== */
+
+function initFAQ() {
+  const faqItems = document.querySelectorAll('.faq-question');
+  
+  faqItems.forEach(question => {
+    question.addEventListener('click', () => {
+      const faqItem = question.parentElement;
+      faqItem.classList.toggle('active');
+    });
+  });
+}
+
+/* ==========================================================================
+   Jargon Card Toggle
+   ========================================================================== */
+
+function toggleJargon(card) {
+  const isActive = card.classList.contains('active');
+  
+  document.querySelectorAll('.jargon-card').forEach(c => {
+    c.classList.remove('active');
+  });
+  
+  if (!isActive) {
+    card.classList.add('active');
+  }
+}
+
+/* ==========================================================================
+   Modal Functions
+   ========================================================================== */
+
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal')) {
+    e.target.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal.active').forEach(modal => {
+      modal.classList.remove('active');
+    });
+    document.body.style.overflow = '';
+  }
+});
+
+/* ==========================================================================
+   Formatting Utilities
+   ========================================================================== */
+
+function formatCurrency(amount, decimals = 2) {
+  return new Intl.NumberFormat('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(amount);
+}
+
+function formatNumber(num, decimals = 0) {
+  return new Intl.NumberFormat('en-GB', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(num);
+}
+
+function formatPercentage(value, decimals = 1) {
+  return value.toFixed(decimals) + '%';
+}
+
+function parseCurrency(str) {
+  return parseFloat(str.replace(/[£,]/g, '')) || 0;
+}
+
 function debounce(func, wait = 100) {
   let timeout;
   return function executedFunction(...args) {
@@ -80,91 +279,18 @@ function debounce(func, wait = 100) {
 }
 
 /**
- * Toggle FAQ item
- */
-function initFAQ() {
-  const faqItems = document.querySelectorAll('.faq-question');
-  
-  faqItems.forEach(question => {
-    question.addEventListener('click', () => {
-      const faqItem = question.parentElement;
-      const isActive = faqItem.classList.contains('active');
-      
-      // Close all FAQ items
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('active');
-      });
-      
-      // Open clicked item if it wasn't active
-      if (!isActive) {
-        faqItem.classList.add('active');
-      }
-    });
-  });
-}
-
-/**
- * Mobile menu toggle
- */
-function initMobileMenu() {
-  const toggle = document.querySelector('.mobile-menu-toggle');
-  const menu = document.querySelector('.nav-menu');
-  
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('active');
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-        menu.classList.remove('active');
-      }
-    });
-  }
-}
-
-/**
- * Set active navigation link
- */
-function setActiveNavLink() {
-  const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  navLinks.forEach(link => {
-    const linkPath = new URL(link.href).pathname;
-    if (currentPath === linkPath || (currentPath === '/' && linkPath === '/index.html')) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-}
-
-/**
- * Create a simple chart using Chart.js
- * @param {string} canvasId - ID of canvas element
- * @param {Object} config - Chart configuration
+ * Create a Chart.js chart
  */
 function createChart(canvasId, config) {
   const ctx = document.getElementById(canvasId);
   if (!ctx) return null;
-  
   return new Chart(ctx, config);
 }
 
-/**
- * Initialize common features on page load
- */
-document.addEventListener('DOMContentLoaded', () => {
-  initFAQ();
-  initMobileMenu();
-  setActiveNavLink();
-});
+/* ==========================================================================
+   UK Tax Data 2025/26
+   ========================================================================== */
 
-/**
- * UK Tax bands for 2025/26 (can be easily updated)
- */
 const UK_TAX_BANDS = {
   england: {
     personalAllowance: 12570,
@@ -189,9 +315,6 @@ const UK_TAX_BANDS = {
   }
 };
 
-/**
- * National Insurance bands for 2025/26
- */
 const NI_BANDS = {
   class1: {
     primary: [
@@ -202,9 +325,6 @@ const NI_BANDS = {
   }
 };
 
-/**
- * Stamp Duty Land Tax bands for 2025/26
- */
 const SDLT_BANDS = {
   standard: [
     { min: 0, max: 250000, rate: 0 },
@@ -223,21 +343,3 @@ const SDLT_BANDS = {
     { min: 1500000, max: Infinity, rate: 0.17 }
   ]
 };
-
-/**
- * Toggle jargon card expansion (for jargon buster sections)
- * @param {HTMLElement} card - The jargon card element to toggle
- */
-function toggleJargon(card) {
-  const isActive = card.classList.contains('active');
-  
-  // Close all cards
-  document.querySelectorAll('.jargon-card').forEach(c => {
-    c.classList.remove('active');
-  });
-  
-  // Open clicked card if it wasn't active
-  if (!isActive) {
-    card.classList.add('active');
-  }
-}

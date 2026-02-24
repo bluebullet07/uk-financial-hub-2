@@ -236,6 +236,7 @@ function updateChart(principal, interest, monthlyPayment, years) {
         legend: {
           position: 'bottom',
           labels: {
+            color: '#B4B4BC',
             padding: 20,
             font: {
               size: 14

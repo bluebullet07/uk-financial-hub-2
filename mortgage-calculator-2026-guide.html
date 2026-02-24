@@ -23,8 +23,15 @@
   <meta property="og:image" content="https://ukfinanceshub.com/images/mortgage-calculator-social.jpg">
   <meta property="og:url" content="https://ukfinanceshub.com/blog/uk-mortgage-calculator-2026-guide.html">
   
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/blog.css">
+    <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/dropdown-nav.css">
   <!-- Copy from blog-post-structured-data.html -->
   <script type="application/ld+json">
   {
@@ -39,32 +46,83 @@
   }
   </script>
 </head>
+
 <body>
-  <header class="header">
-    <div class="nav-container">
-      <a href="../index.html" class="logo">💷 UK Financial Hub</a>
-      <button class="mobile-menu-toggle">☰</button>
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="../index.html" class="nav-link">Home</a></li>
-          <li><a href="../mortgage-calculator-enhanced.html" class="nav-link">Mortgage</a></li>
-          <li><a href="../income-tax-calculator.html" class="nav-link">Tax</a></li>
-          <li><a href="../stamp-duty-calculator.html" class="nav-link">Stamp Duty</a></li>
-          <li><a href="../compound-interest-calculator.html" class="nav-link">Compound Interest</a></li>
-          <li><a href="../investment-calculator.html" class="nav-link">Investment</a></li>
-          <li><a href="../simple-interest-calculator.html" class="nav-link">Simple Interest</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <!-- Header -->
+  <!-- 
+  DROPDOWN NAVIGATION - Replace existing <header> in ALL pages
+  
+  This navigation supports:
+  - 3 dropdown menus (Tax, Property, Savings)
+  - Desktop hover dropdowns
+  - Mobile click-to-expand
+  - Scalable for future calculators
+-->
+
+<header class="header">
+  <div class="nav-container">
+    <a href="index.html" class="logo">UK Financial Hub</a>
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        
+        <!-- Tax Calculators Dropdown -->
+        <li class="dropdown">
+          <a href="#" class="nav-link dropdown-toggle">
+            Tax Calculators <span class="arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="income-tax-calculator.html">💷 Income Tax Calculator</a></li>
+            <li><a href="self-employed-tax-calculator.html">💼 Self-Employed Tax</a></li>
+            <li><a href="inheritance-tax-calculator.html">🏛️ Inheritance Tax</a></li>
+          </ul>
+        </li>
+        
+        <!-- Property Dropdown -->
+        <li class="dropdown">
+          <a href="#" class="nav-link dropdown-toggle">
+            Property <span class="arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="mortgage-calculator-enhanced.html">🏠 Mortgage Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">🏛️ Stamp Duty Calculator</a></li>
+          </ul>
+        </li>
+        
+        <!-- Savings & Investment Dropdown -->
+        <li class="dropdown">
+          <a href="#" class="nav-link dropdown-toggle">
+            Savings <span class="arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="compound-interest-calculator.html">📈 Compound Interest</a></li>
+            <li><a href="simple-interest-calculator.html">💰 Simple Interest</a></li>
+            <li><a href="investment-calculator.html">📊 Investment Calculator</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- 
+  NOTES:
+  - Replace entire <header class="header">...</header> section
+  - Works with existing CSS (just add dropdown-nav.css)
+  - Works with existing common.js (just add dropdown-nav.js)
+  - Emojis in dropdown optional (remove if you don't want them)
+-->
 
   <main class="blog-content">
     <article class="blog-post">
       <div class="container">
         <div class="breadcrumb">
-          <a href="../index.html">Home</a>
+          <a href="index.html">Home</a>
           <span class="breadcrumb-separator">/</span>
-          <a href="../blog/">Blog</a>
+          <a href="blog/">Blog</a>
           <span class="breadcrumb-separator">/</span>
           <span>UK Mortgage Calculator 2026 Guide</span>
         </div>
@@ -113,7 +171,7 @@
         <div class="cta-box">
           <h3>📊 Calculate Your Mortgage Payment Now</h3>
           <p>See the full breakdown in 30 seconds — no signup required</p>
-          <a href="../mortgage-calculator-enhanced.html" class="cta-button">Try Free Calculator →</a>
+          <a href="mortgage-calculator-enhanced.html" class="cta-button">Try Free Calculator →</a>
         </div>
 
         <!-- Continue with all sections from the markdown version -->
@@ -246,7 +304,7 @@
         <div class="cta-box secondary">
           <h3>Calculate Your Own Scenario</h3>
           <p>Model your exact property price, deposit, and term</p>
-          <a href="../mortgage-calculator-enhanced.html" class="cta-button">Use Calculator →</a>
+          <a href="mortgage-calculator-enhanced.html" class="cta-button">Use Calculator →</a>
         </div>
 
         <h2>What the Calculator Doesn't Show (But You Need to Know)</h2>
@@ -259,7 +317,7 @@
           <li><strong>Valuation fee:</strong> £200-£1,500</li>
           <li><strong>Legal fees:</strong> £800-£1,500</li>
           <li><strong>Survey:</strong> £400-£1,200 (optional but recommended)</li>
-          <li><strong>Stamp duty:</strong> <a href="../stamp-duty-calculator.html">Calculate SDLT here →</a></li>
+          <li><strong>Stamp duty:</strong> <a href="stamp-duty-calculator.html">Calculate SDLT here →</a></li>
         </ul>
 
         <div class="calculation-box">
@@ -328,19 +386,19 @@
         <h2>Related Tools You Might Need</h2>
 
         <div class="related-tools">
-          <a href="../stamp-duty-calculator.html" class="tool-card">
+          <a href="stamp-duty-calculator.html" class="tool-card">
             <span class="tool-icon">🏛️</span>
             <h3>Stamp Duty Calculator</h3>
             <p>Calculate SDLT including first-time buyer relief</p>
           </a>
 
-          <a href="../income-tax-calculator.html" class="tool-card">
+          <a href="income-tax-calculator.html" class="tool-card">
             <span class="tool-icon">💷</span>
             <h3>Income Tax Calculator</h3>
             <p>Work out your take-home pay to budget properly</p>
           </a>
 
-          <a href="../compound-interest-calculator.html" class="tool-card">
+          <a href="compound-interest-calculator.html" class="tool-card">
             <span class="tool-icon">📈</span>
             <h3>Compound Interest</h3>
             <p>See how your deposit savings grow</p>
@@ -351,7 +409,7 @@
           <h2>🏠 Calculate Your Real Mortgage Cost Now</h2>
           <p><strong>See exactly what you'll pay over 25, 30, or 35 years</strong></p>
           <p>Model overpayments. Stress-test rate rises. Download PDF report.</p>
-          <a href="../mortgage-calculator-enhanced.html" class="cta-button large">Use Our Free UK Mortgage Calculator 2026 →</a>
+          <a href="mortgage-calculator-enhanced.html" class="cta-button large">Use Our Free UK Mortgage Calculator 2026 →</a>
           <p class="cta-subtext">Takes 30 seconds. No signup. No spam. Just answers.</p>
         </div>
 
@@ -385,9 +443,9 @@
         <div class="footer-section">
           <h4>Calculators</h4>
           <ul class="footer-links">
-            <li><a href="../mortgage-calculator-enhanced.html">Mortgage Calculator</a></li>
-            <li><a href="../income-tax-calculator.html">Income Tax Calculator</a></li>
-            <li><a href="../stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
+            <li><a href="mortgage-calculator-enhanced.html">Mortgage Calculator</a></li>
+            <li><a href="income-tax-calculator.html">Income Tax Calculator</a></li>
+            <li><a href="stamp-duty-calculator.html">Stamp Duty Calculator</a></li>
           </ul>
         </div>
       </div>
@@ -405,7 +463,7 @@
     </div>
   </footer>
 
-  <script src="../js/common.js"></script>
-  <script src="../js/blog.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/blog.js"></script>
 </body>
 </html>

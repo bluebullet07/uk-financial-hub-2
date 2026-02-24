@@ -1,0 +1,134 @@
+/* ============================================
+   MOBILE MENU FIX - Add this to dropdown-nav.css
+   Or replace the mobile section
+   ============================================ */
+
+/* ============================================
+   Mobile Menu Toggle & Display
+   ============================================ */
+
+@media (max-width: 768px) {
+  
+  /* Hide navigation by default on mobile */
+  .nav-menu {
+    position: fixed;
+    top: 60px; /* Below header */
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary, #12121A);
+    flex-direction: column;
+    padding: 1rem 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+  
+  /* Show navigation when active */
+  .nav-menu.active {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    opacity: 1;
+    padding: 1rem 0;
+  }
+  
+  /* Mobile menu items */
+  .nav-menu > li {
+    width: 100%;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .nav-menu > li:last-child {
+    border-bottom: none;
+  }
+  
+  .nav-menu > li > a {
+    display: block;
+    padding: 1rem 1.5rem;
+    width: 100%;
+  }
+  
+  /* Mobile menu toggle button */
+  .mobile-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #2d3748;
+  }
+  
+  .mobile-menu-toggle.active {
+    color: #667eea;
+  }
+  
+  /* Reset dropdown positioning for mobile */
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    border-left: 3px solid #667eea;
+    border-radius: 0;
+    margin-left: 1rem;
+    padding: 0.5rem 0;
+    background: var(--bg-tertiary, #1A1A25);
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  /* Show dropdown when parent is active */
+  .dropdown.active .dropdown-menu {
+    display: block;
+    max-height: 500px;
+  }
+  
+  /* Mobile dropdown items */
+  .dropdown-menu li a {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .dropdown-menu li a:hover {
+    background: var(--bg-secondary, #12121A);
+    padding-left: 1rem;
+  }
+  
+  /* Arrow alignment on mobile */
+  .dropdown-toggle {
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .dropdown-toggle .arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown.active .dropdown-toggle .arrow {
+    transform: rotate(180deg);
+  }
+}
+
+/* ============================================
+   Desktop - Hide mobile toggle button
+   ============================================ */
+
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+  
+  .nav-menu {
+    display: flex !important;
+    opacity: 1 !important;
+    max-height: none !important;
+  }
+}
